@@ -1,0 +1,20 @@
+{
+  "AuthPage": {
+    "welcome": "Welcome to LumaGram",
+    "not-registered": "Not registered yet?",
+    "have-account": "Already have an account?",
+    "username": "Username",
+    "password": "Password",
+    "sign-in": "Sign In",
+    "sign-in-action": "Sign In",
+    "password-forgot": "Forgot your password?",
+    "sign-up": "Sign Up",
+    "sign-up-action": "Sign Up",
+    "password-repeat": "Repeat the password"
+  },
+  "Errors": {
+    "empty-fields": "There are empty fields left",
+    "password-no-match": "The passwords doesn't match",
+    "unknown": "An unknown error occurred"
+  }
+}

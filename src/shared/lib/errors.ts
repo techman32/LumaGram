@@ -1,8 +1,9 @@
-const errorMap: Record<string, string> = {
-  'register/password-no-match': 'Введенные пароли не совпадают',
-  'general/empty-fields': 'Есть незаполненные поля',
-}
+import { useTranslations } from 'next-intl'
 
-export function getErrorMessage(errorCode: string): string {
-  return errorMap[errorCode] || 'Произошла неизвестная ошибка'
+export function useErrorMessages() {
+  const t = useTranslations('Errors')
+
+  return (errorCode: string): string => {
+    return t(errorCode, { defaultValue: t('unknown') })
+  }
 }

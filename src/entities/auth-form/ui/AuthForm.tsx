@@ -5,8 +5,10 @@ import Button from '@/shared/ui/Button'
 import { useState } from 'react'
 import { useLoginFormStore } from '@/entities/login-form/model/store'
 import { useRegisterFormStore } from '@/entities/register-form/model/store'
+import { useTranslations } from 'next-intl'
 
 export default function AuthForm() {
+  const t = useTranslations('AuthPage')
   const [registered, setRegistered] = useState<boolean>(false)
 
   const resetLoginForm = useLoginFormStore((state) => state.resetForm)
@@ -27,7 +29,7 @@ export default function AuthForm() {
         {registered ? <LoginForm /> : <RegisterForm />}
       </div>
       <Button className="text-sm opacity-70 underline-offset-2 hover:underline" onClick={toggleForm}>
-        {registered ? 'Еще не зарегистрированы?' : 'Уже есть аккаунт?'}
+        {registered ? t('not-registered') : t('have-account')}
       </Button>
     </div>
   )

@@ -1,0 +1,20 @@
+{
+  "AuthPage": {
+    "welcome": "Добро пожаловать в LumaGram",
+    "not-registered": "Еще не зарегистрированы?",
+    "have-account": "Уже есть аккаунт?",
+    "username": "Введите имя пользователя",
+    "password": "Введите пароль",
+    "sign-in": "Вход",
+    "sign-in-action": "Войти",
+    "password-forgot": "Забыли пароль?",
+    "sign-up": "Регистрация",
+    "sign-up-action": "Зарегистрироваться",
+    "password-repeat": "Повторите пароль"
+  },
+  "Errors": {
+    "empty-fields": "Остались пустые поля",
+    "password-no-match": "Пароли не совпадают",
+    "unknown": "Произошла неизвестная ошибка"
+  }
+}
