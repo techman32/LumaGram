@@ -3,7 +3,6 @@ import Link from 'next/link'
 import Input from '@/shared/ui/Input'
 import Button from '@/shared/ui/Button'
 import Checkbox from '@/shared/ui/Checkbox'
-import { useLoginFormStore } from '@/entities/login-form/model/store'
 import { useErrorMessages } from '@/shared/lib/errors'
 import { useTranslations } from 'next-intl'
 import { useForm } from 'react-hook-form'
@@ -17,7 +16,6 @@ type LoginFormValues = {
 export default function LoginForm() {
   const t = useTranslations('AuthPage')
   const getErrorMessage = useErrorMessages()
-  const { updateField } = useLoginFormStore()
 
   const {
     register,
@@ -26,9 +24,7 @@ export default function LoginForm() {
   } = useForm<LoginFormValues>()
 
   const onSubmit = (data: LoginFormValues) => {
-    updateField('username', data.username)
-    updateField('password', data.password)
-    updateField('remember', data.remember)
+    console.log('Login Data:', data)
   }
 
   return (

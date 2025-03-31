@@ -3,23 +3,13 @@ import LoginForm from '@/entities/login-form/ui/LoginForm'
 import RegisterForm from '@/entities/register-form/ui/RegisterForm'
 import Button from '@/shared/ui/Button'
 import { useState } from 'react'
-import { useLoginFormStore } from '@/entities/login-form/model/store'
-import { useRegisterFormStore } from '@/entities/register-form/model/store'
 import { useTranslations } from 'next-intl'
 
 export default function AuthForm() {
   const t = useTranslations('AuthPage')
   const [registered, setRegistered] = useState<boolean>(false)
 
-  const resetLoginForm = useLoginFormStore((state) => state.resetForm)
-  const resetRegisterForm = useRegisterFormStore((state) => state.resetForm)
-
   const toggleForm = () => {
-    if (registered) {
-      resetRegisterForm()
-    } else {
-      resetLoginForm()
-    }
     setRegistered(!registered)
   }
 

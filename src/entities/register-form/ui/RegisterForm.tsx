@@ -1,7 +1,6 @@
 'use client'
 import Input from '@/shared/ui/Input'
 import Button from '@/shared/ui/Button'
-import { useRegisterFormStore } from '@/entities/register-form/model/store'
 import { useErrorMessages } from '@/shared/lib/errors'
 import { useTranslations } from 'next-intl'
 import { useForm } from 'react-hook-form'
@@ -16,7 +15,6 @@ type RegisterFormValues = {
 export default function RegisterForm() {
   const t = useTranslations('AuthPage')
   const getErrorMessage = useErrorMessages()
-  const { updateField } = useRegisterFormStore()
 
   const {
     register,
@@ -27,10 +25,6 @@ export default function RegisterForm() {
 
   const onSubmit = (data: RegisterFormValues) => {
     console.log('Register Data:', data)
-    updateField('username', data.username)
-    updateField('email', data.email)
-    updateField('password', data.password)
-    updateField('repeatedPassword', data.repeatedPassword)
   }
 
   return (
