@@ -6,12 +6,7 @@ import Checkbox from '@/shared/ui/Checkbox'
 import { useErrorMessages } from '@/shared/lib/errors'
 import { useTranslations } from 'next-intl'
 import { useForm } from 'react-hook-form'
-
-type LoginFormValues = {
-  username: string
-  password: string
-  remember: boolean
-}
+import { LoginFormValues } from '@/shared/lib/types'
 
 export default function LoginForm() {
   const t = useTranslations('AuthPage')

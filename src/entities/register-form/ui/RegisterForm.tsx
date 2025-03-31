@@ -4,13 +4,7 @@ import Button from '@/shared/ui/Button'
 import { useErrorMessages } from '@/shared/lib/errors'
 import { useTranslations } from 'next-intl'
 import { useForm } from 'react-hook-form'
-
-type RegisterFormValues = {
-  username: string
-  email: string
-  password: string
-  repeatedPassword: string
-}
+import { RegisterFormValues } from '@/shared/lib/types'
 
 export default function RegisterForm() {
   const t = useTranslations('AuthPage')
