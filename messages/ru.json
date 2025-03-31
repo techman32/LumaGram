@@ -19,7 +19,13 @@
     "password-repeat": "Повторите пароль"
   },
   "Errors": {
-    "empty-fields": "Остались пустые поля",
+    "required": "Поле обязательное",
+    "password-required": "Заполните пароль",
+    "password-short": "Пароль должен содержать минимум 6 символов",
+    "username-required": "Заполните имя пользователя",
+    "email-required": "Заполните электронную почту",
+    "email-invalid": "Некорректный email",
+    "password-repeat-required": "Повторите пароль",
     "password-no-match": "Пароли не совпадают",
     "unknown": "Произошла неизвестная ошибка"
   }

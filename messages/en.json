@@ -19,7 +19,13 @@
     "password-repeat": "Repeat the password"
   },
   "Errors": {
-    "empty-fields": "There are empty fields left",
+    "required": "Field is required",
+    "password-required": "Password is required",
+    "password-short": "Password must contain a minimum of 6 characters",
+    "username-required": "Username is required",
+    "email-required": "Email is required",
+    "email-invalid": "Email is invalid",
+    "password-repeat-required": "Repeated password is required",
     "password-no-match": "The passwords doesn't match",
     "unknown": "An unknown error occurred"
   }
