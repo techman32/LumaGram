@@ -3,6 +3,7 @@ import { create } from 'zustand'
 type RegisterForm = {
   username: string
   password: string
+  email: string
   repeatedPassword: string
 }
 
@@ -16,6 +17,7 @@ export const useRegisterFormStore = create<RegisterFormStore>((set) => ({
   registerForm: {
     username: '',
     password: '',
+    email: '',
     repeatedPassword: '',
   },
   updateField: (field, value) =>
@@ -25,5 +27,5 @@ export const useRegisterFormStore = create<RegisterFormStore>((set) => ({
         [field]: value,
       },
     })),
-  resetForm: () => set({ registerForm: { username: '', password: '', repeatedPassword: '' } }),
+  resetForm: () => set({ registerForm: { username: '', password: '', repeatedPassword: '', email: '' } }),
 }))

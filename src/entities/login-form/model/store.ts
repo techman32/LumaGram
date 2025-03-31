@@ -3,6 +3,7 @@ import { create } from 'zustand'
 type LoginForm = {
   username: string
   password: string
+  remember: boolean
 }
 
 type LoginFormStore = {
@@ -15,6 +16,7 @@ export const useLoginFormStore = create<LoginFormStore>((set) => ({
   loginForm: {
     username: '',
     password: '',
+    remember: false,
   },
   updateField: (field, value) =>
     set((state) => ({
@@ -23,5 +25,5 @@ export const useLoginFormStore = create<LoginFormStore>((set) => ({
         [field]: value,
       },
     })),
-  resetForm: () => set({ loginForm: { username: '', password: '' } }),
+  resetForm: () => set({ loginForm: { username: '', password: '', remember: false } }),
 }))

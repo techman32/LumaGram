@@ -1,10 +1,11 @@
 'use client'
+import Link from 'next/link'
 import Input from '@/shared/ui/Input'
 import Button from '@/shared/ui/Button'
+import Checkbox from '@/shared/ui/Checkbox'
 import { useLoginFormStore } from '@/entities/login-form/model/store'
 import { FormEvent, useState } from 'react'
 import { useErrorMessages } from '@/shared/lib/errors'
-import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 
 export default function LoginForm() {
@@ -24,9 +25,26 @@ export default function LoginForm() {
   return (
     <div className="flex flex-col gap-4 items-center">
       <h2 className="font-semibold text-xl">{t('sign-in')}</h2>
-      <form className="flex flex-col gap-2 w-full items-center" onSubmit={handleLogin}>
-        <Input placeholder={t('username')} onChange={(event) => updateField('username', event.target.value)} />
-        <Input placeholder={t('password')} onChange={(event) => updateField('password', event.target.value)} />
+      <form className="flex flex-col gap-4 w-full items-center" onSubmit={handleLogin}>
+        <div className="w-full flex flex-col gap-2">
+          <h2 className="font-semibold">{t('username')}</h2>
+          <Input placeholder={t('username-input')} onChange={(event) => updateField('username', event.target.value)} />
+        </div>
+        <div className="w-full flex flex-col gap-2">
+          <h2 className="font-semibold">{t('password')}</h2>
+          <Input
+            placeholder={t('password-input')}
+            type="password"
+            onChange={(event) => updateField('password', event.target.value)}
+          />
+        </div>
+        <div className="flex justify-start w-full">
+          <Checkbox
+            label={t('remember-me')}
+            id="remember"
+            onChange={(event) => updateField('remember', event.target.checked)}
+          />
+        </div>
         <Button block type="submit" appearance="primary">
           {t('sign-in-action')}
         </Button>
