@@ -10,3 +10,12 @@ export type RegisterFormValues = {
   password: string
   repeatedPassword: string
 }
+
+export type Profile = {
+  username: string
+  posts: number
+  followers: number
+  following: number
+  name: string
+  description: string
+}
