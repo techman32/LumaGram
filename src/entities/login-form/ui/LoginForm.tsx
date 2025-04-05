@@ -24,10 +24,10 @@ export default function LoginForm() {
 
   return (
     <div className="flex flex-col gap-4 items-center">
-      <h2 className="font-semibold text-xl">{t('sign-in')}</h2>
+      <h2 className="font-semibold text-xl dark:text-white">{t('sign-in')}</h2>
       <form className="flex flex-col gap-4 w-full items-center" onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full flex flex-col gap-2">
-          <h2 className="font-semibold">{t('username')}</h2>
+          <h2 className="font-semibold dark:text-white">{t('username')}</h2>
           <Input
             placeholder={t('username-input')}
             {...register('username', { required: 'username-required' })}
@@ -38,7 +38,7 @@ export default function LoginForm() {
           )}
         </div>
         <div className="w-full flex flex-col gap-2">
-          <h2 className="font-semibold">{t('password')}</h2>
+          <h2 className="font-semibold dark:text-white">{t('password')}</h2>
           <Input
             placeholder={t('password-input')}
             type="password"
@@ -55,7 +55,7 @@ export default function LoginForm() {
         <Button block type="submit" appearance="primary">
           {t('sign-in-action')}
         </Button>
-        <Link href="/" className="opacity-70 italic text-sm underline-offset-2 hover:underline">
+        <Link href="/" className="opacity-70 italic text-sm underline-offset-2 hover:underline dark:text-white">
           {t('password-forgot')}
         </Link>
       </form>

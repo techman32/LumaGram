@@ -23,10 +23,10 @@ export default function RegisterForm() {
 
   return (
     <div className="flex flex-col gap-4 items-center">
-      <h2 className="font-semibold text-xl">{t('sign-up')}</h2>
+      <h2 className="font-semibold text-xl dark:text-white">{t('sign-up')}</h2>
       <form className="flex flex-col gap-4 w-full items-center" onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full flex flex-col gap-2">
-          <h2 className="font-semibold">{t('username')}</h2>
+          <h2 className="font-semibold dark:text-white">{t('username')}</h2>
           <Input
             placeholder={t('username-input')}
             {...register('username', { required: 'username-required' })}
@@ -37,7 +37,7 @@ export default function RegisterForm() {
           )}
         </div>
         <div className="w-full flex flex-col gap-2">
-          <h2 className="font-semibold">{t('email')}</h2>
+          <h2 className="font-semibold dark:text-white">{t('email')}</h2>
           <Input
             placeholder={t('email-input')}
             {...register('email', {
@@ -51,7 +51,7 @@ export default function RegisterForm() {
           )}
         </div>
         <div className="w-full flex flex-col gap-2">
-          <h2 className="font-semibold">{t('password')}</h2>
+          <h2 className="font-semibold dark:text-white">{t('password')}</h2>
           <Input
             placeholder={t('password-input')}
             type="password"
@@ -66,7 +66,7 @@ export default function RegisterForm() {
           )}
         </div>
         <div className="w-full flex flex-col gap-2">
-          <h2 className="font-semibold">{t('password-repeat')}</h2>
+          <h2 className="font-semibold dark:text-white">{t('password-repeat')}</h2>
           <Input
             placeholder={t('password-repeat-input')}
             type="password"

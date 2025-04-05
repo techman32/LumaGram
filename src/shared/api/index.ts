@@ -26,7 +26,7 @@ const request = async <T>(uri: string, method: HttpMethod, body?: unknown, heade
 
 export const loginUser = async (data: LoginFormValues) => {
   try {
-    return await request<LoginFormValues>('users', 'POST', data)
+    return await request<LoginFormValues>('auth/login', 'POST', data)
   } catch (error) {
     console.error(error)
   }
@@ -34,7 +34,7 @@ export const loginUser = async (data: LoginFormValues) => {
 
 export const registerUser = async (data: RegisterFormValues) => {
   try {
-    return await request<LoginFormValues>('users', 'POST', data)
+    return await request<RegisterFormValues>('auth/register', 'POST', data)
   } catch (error) {
     console.error(error)
   }
