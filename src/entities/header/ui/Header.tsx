@@ -3,7 +3,7 @@ import { Compass, Heart, Send, SquarePlus } from 'lucide-react'
 
 export default function Header() {
   return (
-    <div className="border-b border-gray-200 dark:border-white/10 p-2 shadow-xs fixed w-full backdrop-blur-sm bg-white/50 dark:bg-black/90 z-10">
+    <div className="bg-white/20 backdrop-blur-md border-gray-200 dark:bg-black/20 dark:border-white/10 border-b py-2 px-4 md:px-0 fixed w-full shadow-xs z-10">
       <div className="container mx-auto flex justify-between items-center">
         <h2 className="font-bold text-xl dark:text-white">Lumagram</h2>
         <div className="flex gap-2">

@@ -5,7 +5,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <Header />
-      <div className="pt-[53px] pb-4 bg-white dark:bg-black/90">{children}</div>
+      <div className="pt-[53px] pb-4 bg-white dark:bg-black/10">{children}</div>
     </>
   )
 }
