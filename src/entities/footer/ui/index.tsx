@@ -1,4 +1,5 @@
 import { ThemeToggle } from '@/entities/theme-toggle/ui'
+import LanguageChanger from '@/entities/language-changer/ui/LanguageChanger'
 
 export default function Footer() {
   return (
@@ -7,7 +8,10 @@ export default function Footer() {
         <p className="opacity-70 italic text-sm dark:text-white">
           Copyright © {new Date(Date.now()).getFullYear()} Applice Studio
         </p>
-        <ThemeToggle />
+        <div className="flex items-center gap-4">
+          <LanguageChanger />
+          <ThemeToggle />
+        </div>
       </div>
     </div>
   )
