@@ -6,6 +6,7 @@ import { NextIntlClientProvider, hasLocale } from 'next-intl'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
 import Footer from '@/entities/footer/ui'
+import { NextThemesProvider } from '@/shared/providers/NextThemesProvider'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -35,11 +36,13 @@ export default async function LocaleLayout({
   }
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <NextIntlClientProvider>
-          {children}
-          <Footer />
+          <NextThemesProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            {children}
+            <Footer />
+          </NextThemesProvider>
         </NextIntlClientProvider>
       </body>
     </html>

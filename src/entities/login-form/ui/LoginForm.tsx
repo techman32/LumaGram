@@ -52,7 +52,7 @@ export default function LoginForm() {
         <div className="flex justify-start w-full">
           <Checkbox label={t('remember-me')} id="remember" {...register('remember')} />
         </div>
-        <Button block type="submit" appearance="primary">
+        <Button block type="submit" appearance="primary" className="mt-2">
           {t('sign-in-action')}
         </Button>
         <Link href="/" className="opacity-70 italic text-sm underline-offset-2 hover:underline dark:text-white">

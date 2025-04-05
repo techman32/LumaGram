@@ -80,7 +80,7 @@ export default function RegisterForm() {
             <p className="text-red-500 italic text-sm">{getErrorMessage(errors.repeatedPassword.message as string)}</p>
           )}
         </div>
-        <Button block appearance="primary">
+        <Button block appearance="primary" className="mt-2">
           {t('sign-up-action')}
         </Button>
       </form>

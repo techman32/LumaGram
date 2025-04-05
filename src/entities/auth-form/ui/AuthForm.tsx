@@ -14,8 +14,8 @@ export default function AuthForm() {
   }
 
   return (
-    <div className="flex flex-col gap-4 items-center">
-      <div className="flex flex-col w-96 bg-white dark:bg-black/95 p-8 rounded-lg not-dark:shadow-sm dark:border dark:border-white/20">
+    <div className="flex flex-col gap-4 items-center max-w-96 w-full">
+      <div className="flex flex-col w-full bg-white dark:bg-black/10 p-8 rounded-lg not-dark:shadow-sm dark:border dark:border-white/10">
         {registered ? <LoginForm /> : <RegisterForm />}
       </div>
       <Button className="text-sm opacity-70 underline-offset-2 hover:underline dark:text-white" onClick={toggleForm}>
