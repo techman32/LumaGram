@@ -12,7 +12,7 @@ export default function Button({ className, appearance = 'default', block, ...pr
     <button
       {...props}
       className={cn(
-        'cursor-pointer p-2 rounded-md transition-colors duration-300',
+        'cursor-pointer p-2 rounded-md transition-colors duration-300 outline-none focus:outline-none',
         {
           'bg-black text-white hover:bg-black/90 dark:bg-white dark:text-black dark:hover:bg-white/90 font-medium':
             appearance === 'primary',

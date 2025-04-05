@@ -7,6 +7,7 @@ import { useErrorMessages } from '@/shared/lib/errors'
 import { useTranslations } from 'next-intl'
 import { useForm } from 'react-hook-form'
 import { LoginFormValues } from '@/shared/lib/types'
+import { loginUser } from '@/shared/api'
 
 export default function LoginForm() {
   const t = useTranslations('AuthPage')
@@ -18,8 +19,9 @@ export default function LoginForm() {
     formState: { errors },
   } = useForm<LoginFormValues>()
 
-  const onSubmit = (data: LoginFormValues) => {
-    console.log('Login Data:', data)
+  const onSubmit = async (data: LoginFormValues) => {
+    const response = await loginUser(data)
+    console.log(response)
   }
 
   return (
@@ -50,7 +52,7 @@ export default function LoginForm() {
           )}
         </div>
         <div className="flex justify-start w-full">
-          <Checkbox label={t('remember-me')} id="remember" {...register('remember')} />
+          <Checkbox label={t('remember-me')} id="rememberMe" {...register('rememberMe')} />
         </div>
         <Button block type="submit" appearance="primary" className="mt-2">
           {t('sign-in-action')}

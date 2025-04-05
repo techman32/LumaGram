@@ -5,6 +5,7 @@ import { useErrorMessages } from '@/shared/lib/errors'
 import { useTranslations } from 'next-intl'
 import { useForm } from 'react-hook-form'
 import { RegisterFormValues } from '@/shared/lib/types'
+import { registerUser } from '@/shared/api'
 
 export default function RegisterForm() {
   const t = useTranslations('AuthPage')
@@ -17,8 +18,9 @@ export default function RegisterForm() {
     watch,
   } = useForm<RegisterFormValues>()
 
-  const onSubmit = (data: RegisterFormValues) => {
-    console.log('Register Data:', data)
+  const onSubmit = async (data: RegisterFormValues) => {
+    const response = await registerUser(data)
+    console.log(response)
   }
 
   return (

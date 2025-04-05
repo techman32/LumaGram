@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export const POST = async (req: NextRequest) => {
-  const { username, password, rememberMe } = await req.json()
+  const { username, email, password } = await req.json()
 
   try {
-    const response = await fetch('http://109.73.197.191/api/auth/login', {
+    const response = await fetch('http://109.73.197.191/api/auth/register', {
       method: 'POST',
-      body: JSON.stringify({ username, password, rememberMe }),
+      body: JSON.stringify({ username, email, password }),
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     })
 
