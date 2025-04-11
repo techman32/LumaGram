@@ -13,7 +13,7 @@ export const POST = async (req: NextRequest) => {
     const { data, success, error } = await response.json()
 
     if (success) {
-      const res = NextResponse.json({ success })
+      const res = NextResponse.json({ success }, { status: response.status })
 
       res.cookies.set({
         name: 'accessToken',

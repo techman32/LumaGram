@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, ChangeEvent } from 'react'
 import Button from '@/shared/ui/Button'
 import { Image as ImageIcon } from 'lucide-react'
 
@@ -51,7 +51,7 @@ export default function ImageUploadModal({ isOpen, onClose }: { isOpen: boolean;
     }
   }, [selectedFile])
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       setSelectedFile(e.target.files[0])
     }

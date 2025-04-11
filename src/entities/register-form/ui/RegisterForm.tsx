@@ -6,21 +6,35 @@ import { useTranslations } from 'next-intl'
 import { useForm } from 'react-hook-form'
 import { RegisterFormValues } from '@/shared/lib/types'
 import { registerUser } from '@/shared/api'
+import { useRouter } from '@/i18n/routing'
 
 export default function RegisterForm() {
   const t = useTranslations('AuthPage')
   const getErrorMessage = useErrorMessages()
+  const router = useRouter()
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
+    setError,
   } = useForm<RegisterFormValues>()
 
   const onSubmit = async (data: RegisterFormValues) => {
-    const response = await registerUser(data)
-    console.log(response)
+    try {
+      const response = await registerUser(data)
+
+      if (response && response.success) {
+        router.replace('/profile')
+      }
+    } catch (error) {
+      console.log(error)
+      setError('root', {
+        type: 'manual',
+        message: getErrorMessage('server-error'),
+      })
+    }
   }
 
   return (
@@ -85,6 +99,7 @@ export default function RegisterForm() {
         <Button block appearance="primary" className="mt-2">
           {t('sign-up-action')}
         </Button>
+        {errors.root && <p className="text-red-500 italic text-sm text-center mt-2">{errors.root.message}</p>}
       </form>
     </div>
   )
