@@ -28,6 +28,11 @@
     "password-repeat-required": "Repeated password is required",
     "password-no-match": "The passwords doesn't match",
     "server-error": "Server's Error. Reload page and try again",
-    "unknown": "An unknown error occurred"
+    "unknown": "An unknown error occurred",
+    "login-not-valid-username": "The username does not exist",
+    "login-not-valid-password": "The password is wrong",
+    "register-not-valid-username": "The username is taken",
+    "register-not-valid-email": "Email is taken",
+    "register-not-valid-password": "Invalid password"
   }
 }

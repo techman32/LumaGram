@@ -28,6 +28,11 @@
     "password-repeat-required": "Повторите пароль",
     "password-no-match": "Пароли не совпадают",
     "server-error": "Ошибка сервера, перезагрузите страницу и попробуйте снова",
-    "unknown": "Произошла неизвестная ошибка"
+    "unknown": "Произошла неизвестная ошибка",
+    "login-not-valid-username": "Пользователя не существует",
+    "login-not-valid-password": "Пароль неверный",
+    "register-not-valid-username": "Имя пользователя занято",
+    "register-not-valid-email": "Email занят",
+    "register-not-valid-password": "Невалидный пароль"
   }
 }

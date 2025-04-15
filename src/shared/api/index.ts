@@ -5,7 +5,7 @@ type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
 type Response = {
   success: boolean,
   data?: unknown,
-  error?: string | string[],
+  error?: string[],
 }
 
 const request = async <T>(uri: string, method: HttpMethod, body?: T, headers: HeadersInit = {}): Promise<Response> => {

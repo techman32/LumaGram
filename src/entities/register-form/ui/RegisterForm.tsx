@@ -25,8 +25,17 @@ export default function RegisterForm() {
     try {
       const response = await registerUser(data)
 
-      if (response && response.success) {
-        router.replace('/profile')
+      if (response) {
+        if (response.success) {
+          router.replace('/profile')
+        } else {
+          response.error?.map((er) => {
+            setError('root', {
+              type: 'manual',
+              message: getErrorMessage(`register-not-valid-${er}`),
+            })
+          })
+        }
       }
     } catch (error) {
       console.log(error)

@@ -8,20 +8,41 @@ import { useTranslations } from 'next-intl'
 import { useForm } from 'react-hook-form'
 import { LoginFormValues } from '@/shared/lib/types'
 import { loginUser } from '@/shared/api'
+import { useRouter } from '@/i18n/routing'
 
 export default function LoginForm() {
   const t = useTranslations('AuthPage')
   const getErrorMessage = useErrorMessages()
+  const router = useRouter()
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm<LoginFormValues>()
 
   const onSubmit = async (data: LoginFormValues) => {
-    const response = await loginUser(data)
-    console.log(response)
+    try {
+      const response = await loginUser(data)
+
+      if (response) {
+        if (response.success) {
+          router.replace('/profile')
+        } else {
+          setError('root', {
+            type: 'manual',
+            message: getErrorMessage(`login-not-valid-${response.error}`),
+          })
+        }
+      }
+    } catch (error) {
+      console.log(error)
+      setError('root', {
+        type: 'manual',
+        message: getErrorMessage('server-error'),
+      })
+    }
   }
 
   return (
@@ -57,6 +78,7 @@ export default function LoginForm() {
         <Button block type="submit" appearance="primary" className="mt-2">
           {t('sign-in-action')}
         </Button>
+        {errors.root && <p className="text-red-500 italic text-sm text-center mt-2">{errors.root.message}</p>}
         <Link href="/" className="opacity-70 italic text-sm underline-offset-2 hover:underline dark:text-white">
           {t('password-forgot')}
         </Link>
