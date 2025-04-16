@@ -1,6 +1,5 @@
-import ButtonSettings from '@/shared/ui/ButtonSettings'
 import Button from '@/shared/ui/Button'
-import {Link} from '@/i18n/routing'
+import { Link } from '@/i18n/routing'
 
 export default function ProfileInfo() {
   return (
