@@ -3,11 +3,11 @@ import Button from '@/shared/ui/Button'
 import { redirect } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 
-export default async function ResetPasswordPage({ searchParams }: { searchParams: { token?: string } }) {
+export default async function ResetPasswordPage({ searchParams }: { searchParams: Promise<{ token?: string }> }) {
+  const { token } = await searchParams
   const t = await getTranslations('ResetPasswordPage')
-  console.log(t)
 
-  if (!searchParams?.token) {
+  if (!token) {
     redirect('/auth')
   }
 

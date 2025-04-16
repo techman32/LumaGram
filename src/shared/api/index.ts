@@ -1,11 +1,11 @@
-import {LoginFormValues, RegisterFormValues} from '@/shared/lib/types'
+import { LoginFormValues, RegisterFormValues } from '@/shared/lib/types'
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
 type Response = {
-  success: boolean,
-  data?: unknown,
-  error?: string[],
+  success: boolean
+  data?: unknown
+  error?: string[]
 }
 
 const request = async <T>(uri: string, method: HttpMethod, body?: T, headers: HeadersInit = {}): Promise<Response> => {
@@ -27,7 +27,7 @@ const request = async <T>(uri: string, method: HttpMethod, body?: T, headers: He
     throw new Error(`HTTP error! Status: ${response.status}`)
   }
 
-  return await response.json() as Promise<Response>
+  return (await response.json()) as Promise<Response>
 }
 
 export const loginUser = async (data: LoginFormValues) => {
