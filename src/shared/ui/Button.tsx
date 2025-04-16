@@ -1,4 +1,4 @@
-import {ButtonHTMLAttributes} from 'react'
+import { ButtonHTMLAttributes } from 'react'
 import cn from 'classnames'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -7,7 +7,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   block?: boolean
 }
 
-export default function Button({className, appearance = 'default', block, ...props}: ButtonProps) {
+export default function Button({ className, appearance = 'default', block, ...props }: ButtonProps) {
   return (
     <button
       {...props}
@@ -18,11 +18,12 @@ export default function Button({className, appearance = 'default', block, ...pro
             appearance === 'primary',
           'bg-gray-100 hover:bg-gray-200 dark:bg-white/10 dark:hover:bg-white/20': appearance === 'secondary',
           'hover:bg-gray-100 dark:hover:bg-white/10': appearance === 'ghost',
-          'border border-gray-200 hover:bg-gray-100 dark:border-white/10 dark:hover:bg-white/10': appearance === 'dropdown'
+          'border border-gray-200 hover:bg-gray-100 dark:border-white/10 dark:hover:bg-white/10':
+            appearance === 'dropdown',
         },
-        {'w-full': block},
-        {'w-full text-left': block && appearance === 'dropdown'},
-        className
+        { 'w-full': block },
+        { 'w-full text-left': block && appearance === 'dropdown' },
+        className,
       )}
     />
   )

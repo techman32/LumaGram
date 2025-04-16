@@ -1,18 +1,16 @@
-import ButtonSettings from '@/shared/ui/ButtonSettings'
 import Button from '@/shared/ui/Button'
-import {Link} from '@/i18n/routing'
+import { Link } from '@/i18n/routing'
 
 export default function ProfileInfo() {
   return (
     <div className="flex flex-col gap-2 md:gap-4">
       <div className="flex gap-4 md:gap-6 items-center">
         <h2 className="font-bold md:text-lg dark:text-white">johndoe</h2>
-        <Link href="/edit">
+        <Link href="/profile/edit">
           <Button appearance="secondary" className="font-medium">
             Edit Profile
           </Button>
         </Link>
-        <ButtonSettings />
       </div>
       <div className="flex gap-2 md:gap-6 text-sm">
         <p className="font-semibold dark:text-white">234 posts</p>

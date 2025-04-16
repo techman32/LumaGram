@@ -8,13 +8,13 @@ import Toggle from '@/shared/ui/Toggle'
 
 export default function EditProfilePage() {
   return (
-    <div className="h-screen">
+    <>
       <div className="mx-[20%] my-4 p-8 bg-white dark:bg-black/10 rounded-lg not-dark:shadow-sm dark:border dark:border-white/10">
         <div className="flex gap-6 items-center mb-4">
           <ProfileAvatar />
           <div className="flex flex-col gap-4">
             <h2 className="font-bold text-xl">johndoe</h2>
-            <Button appearance="secondary">Change Profile Name</Button>
+            <Button appearance="secondary">Change Profile Photo</Button>
           </div>
         </div>
         <form className="flex flex-col gap-4">
@@ -54,6 +54,6 @@ export default function EditProfilePage() {
           </div>
         </form>
       </div>
-    </div>
+    </>
   )
 }

@@ -18,6 +18,14 @@
     "sign-up-action": "Зарегистрироваться",
     "password-repeat": "Повторите пароль"
   },
+  "ResetPasswordPage": {
+    "title": "Восстановление пароля",
+    "password": "Пароль",
+    "password-input": "Введите новый пароль",
+    "repeat-password": "Повторный пароль",
+    "repeat-password-input": "Повторите новый пароль",
+    "save": "Сохранить"
+  },
   "Errors": {
     "required": "Поле обязательное",
     "password-required": "Заполните пароль",

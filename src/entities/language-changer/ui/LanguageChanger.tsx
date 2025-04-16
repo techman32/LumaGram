@@ -16,9 +16,10 @@ export default function LanguageChanger() {
   const router = useRouter()
 
   const handleLanguageChange = (newLocale: string) => {
-    const currentPath = window.location.pathname
-    const pathWithoutLocale = currentPath.replace(new RegExp(`^/${locale}`), '') || '/'
-    router.push(pathWithoutLocale, { locale: newLocale })
+    const url = new URL(window.location.href)
+    const pathWithoutLocale = url.pathname.replace(new RegExp(`^/${locale}`), '') || '/'
+    const newPathWithQuery = `${pathWithoutLocale}${url.search}`
+    router.push(newPathWithQuery, { locale: newLocale })
     setIsOpen(false)
   }
 
