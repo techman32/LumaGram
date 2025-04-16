@@ -14,7 +14,7 @@ export default function EditProfilePage() {
           <ProfileAvatar />
           <div className="flex flex-col gap-4">
             <h2 className="font-bold text-xl">johndoe</h2>
-            <Button appearance="secondary">Change Profile Name</Button>
+            <Button appearance="secondary">Change Profile Photo</Button>
           </div>
         </div>
         <form className="flex flex-col gap-4">

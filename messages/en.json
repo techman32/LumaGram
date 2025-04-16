@@ -18,6 +18,14 @@
     "sign-up-action": "Sign Up",
     "password-repeat": "Repeat the password"
   },
+  "ResetPasswordPage": {
+    "title": "Password recovery",
+    "password": "Password",
+    "password-input": "Enter your new password",
+    "repeat-password": "Repeated password",
+    "repeat-password-input": "Repeat your new password",
+    "save": "Save"
+  },
   "Errors": {
     "required": "Field is required",
     "password-required": "Password is required",
