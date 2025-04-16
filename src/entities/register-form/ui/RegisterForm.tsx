@@ -7,6 +7,8 @@ import { useForm } from 'react-hook-form'
 import { RegisterFormValues } from '@/shared/lib/types'
 import { registerUser } from '@/shared/api'
 import { useRouter } from '@/i18n/routing'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { registerDefaultValues, RegisterSchema, registerSchema } from '@/entities/register-form/model/schema'
 
 export default function RegisterForm() {
   const t = useTranslations('AuthPage')
@@ -15,11 +17,14 @@ export default function RegisterForm() {
 
   const {
     register,
-    handleSubmit,
     formState: { errors },
-    watch,
+    handleSubmit,
     setError,
-  } = useForm<RegisterFormValues>()
+  } = useForm<RegisterSchema>({
+    mode: 'all',
+    resolver: zodResolver(registerSchema),
+    defaultValues: registerDefaultValues,
+  })
 
   const onSubmit = async (data: RegisterFormValues) => {
     try {
@@ -95,14 +100,13 @@ export default function RegisterForm() {
           <Input
             placeholder={t('password-repeat-input')}
             type="password"
-            {...register('repeatedPassword', {
+            {...register('repeatPassword', {
               required: 'password-repeat-required',
-              validate: (value) => value === watch('password') || 'password-no-match',
             })}
-            error={!!errors.repeatedPassword}
+            error={!!errors.repeatPassword}
           />
-          {errors.repeatedPassword && (
-            <p className="text-red-500 italic text-sm">{getErrorMessage(errors.repeatedPassword.message as string)}</p>
+          {errors.repeatPassword && (
+            <p className="text-red-500 italic text-sm">{getErrorMessage(errors.repeatPassword.message as string)}</p>
           )}
         </div>
         <Button block appearance="primary" className="mt-2">

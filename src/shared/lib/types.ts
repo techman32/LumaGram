@@ -8,7 +8,7 @@ export type RegisterFormValues = {
   username: string
   email: string
   password: string
-  repeatedPassword: string
+  repeatPassword: string
 }
 
 export type Profile = {
