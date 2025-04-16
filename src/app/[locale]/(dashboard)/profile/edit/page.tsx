@@ -8,7 +8,7 @@ import Toggle from '@/shared/ui/Toggle'
 
 export default function EditProfilePage() {
   return (
-    <div className="h-screen">
+    <>
       <div className="mx-[20%] my-4 p-8 bg-white dark:bg-black/10 rounded-lg not-dark:shadow-sm dark:border dark:border-white/10">
         <div className="flex gap-6 items-center mb-4">
           <ProfileAvatar />
@@ -54,6 +54,6 @@ export default function EditProfilePage() {
           </div>
         </form>
       </div>
-    </div>
+    </>
   )
 }

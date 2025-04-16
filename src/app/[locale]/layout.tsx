@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
 import Footer from '@/entities/footer/ui'
 import { NextThemesProvider } from '@/shared/providers/NextThemesProvider'
+import Header from '@/entities/header/ui/Header'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -37,13 +38,10 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-full`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 dark:bg-black`}>
         <NextIntlClientProvider>
           <NextThemesProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            <main className="flex-grow">
-              {children}
-            </main>
-            <Footer />
+            {children}
           </NextThemesProvider>
         </NextIntlClientProvider>
       </body>

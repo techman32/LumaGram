@@ -9,7 +9,7 @@ export default function ResetPasswordPage({ searchParams }: { searchParams: { to
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="border rounded-md border-gray-200 max-w-96 w-full p-4 flex flex-col gap-6">
+      <div className="border rounded-md border-gray-200 bg-white dark:bg-black dark:border-white/10 max-w-96 w-full p-4 flex flex-col gap-6">
         <h1 className="text-xl font-bold text-center">Восстановление пароля</h1>
         <form className="flex flex-col gap-4 ">
           <div className="flex flex-col gap-2">
