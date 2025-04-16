@@ -12,7 +12,6 @@ export default function ProfileInfo() {
             Edit Profile
           </Button>
         </Link>
-        <ButtonSettings />
       </div>
       <div className="flex gap-2 md:gap-6 text-sm">
         <p className="font-semibold dark:text-white">234 posts</p>
