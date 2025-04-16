@@ -6,9 +6,18 @@ import Checkbox from '@/shared/ui/Checkbox'
 import { useErrorMessages } from '@/shared/lib/errors'
 import { useTranslations } from 'next-intl'
 import { useForm } from 'react-hook-form'
-import { LoginFormValues } from '@/shared/lib/types'
 import { loginUser } from '@/shared/api'
 import { useRouter } from '@/i18n/routing'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+export const loginSchema = z.object({
+  username: z.string().min(4, 'username-required'),
+  password: z.string().min(8, 'password-required'),
+  rememberMe: z.boolean().optional(),
+})
+
+export type LoginFormValues = z.infer<typeof loginSchema>
 
 export default function LoginForm() {
   const t = useTranslations('AuthPage')
@@ -20,7 +29,9 @@ export default function LoginForm() {
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm<LoginFormValues>()
+  } = useForm<LoginFormValues>({
+    resolver: zodResolver(loginSchema),
+  })
 
   const onSubmit = async (data: LoginFormValues) => {
     try {

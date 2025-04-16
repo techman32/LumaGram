@@ -45,3 +45,11 @@ export const registerUser = async (data: RegisterFormValues) => {
     console.error(error)
   }
 }
+
+export const getMe = async () => {
+  try {
+    return await request<RegisterFormValues>('users/me', 'GET')
+  } catch (error) {
+    console.error(error)
+  }
+}
