@@ -1,7 +1,7 @@
 export type LoginFormValues = {
   username: string
   password: string
-  rememberMe: boolean
+  rememberMe?: boolean
 }
 
 export type RegisterFormValues = {

@@ -41,6 +41,9 @@
     "login-not-valid-password": "Пароль неверный",
     "register-not-valid-username": "Имя пользователя занято",
     "register-not-valid-email": "Email занят",
-    "register-not-valid-password": "Невалидный пароль"
+    "register-not-valid-password": "Невалидный пароль",
+    "username-small": "Имя пользователя должно содержать больше 4 символов",
+    "username-long": "Имя пользователя не должно содержать больше 64 символов",
+    "password-small": "Пароль должен содержать больше 8 символов"
   }
 }

@@ -41,6 +41,9 @@
     "login-not-valid-password": "The password is wrong",
     "register-not-valid-username": "The username is taken",
     "register-not-valid-email": "Email is taken",
-    "register-not-valid-password": "Invalid password"
+    "register-not-valid-password": "Invalid password",
+    "username-small": "The username must be more than 4 characters long",
+    "username-long": "The username must not contain more than 64 characters",
+    "password-small": "The password must be more than 8 characters long"
   }
 }

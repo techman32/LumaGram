@@ -8,16 +8,9 @@ import { useTranslations } from 'next-intl'
 import { useForm } from 'react-hook-form'
 import { loginUser } from '@/shared/api'
 import { useRouter } from '@/i18n/routing'
-import { z } from 'zod'
+import { loginDefaultValues, loginSchema, LoginSchema } from '@/entities/login-form/model/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
-
-export const loginSchema = z.object({
-  username: z.string().min(4, 'username-required'),
-  password: z.string().min(8, 'password-required'),
-  rememberMe: z.boolean().optional(),
-})
-
-export type LoginFormValues = z.infer<typeof loginSchema>
+import { LoginFormValues } from '@/shared/lib/types'
 
 export default function LoginForm() {
   const t = useTranslations('AuthPage')
@@ -26,11 +19,13 @@ export default function LoginForm() {
 
   const {
     register,
-    handleSubmit,
     formState: { errors },
+    handleSubmit,
     setError,
-  } = useForm<LoginFormValues>({
+  } = useForm<LoginSchema>({
+    mode: 'all',
     resolver: zodResolver(loginSchema),
+    defaultValues: loginDefaultValues,
   })
 
   const onSubmit = async (data: LoginFormValues) => {
