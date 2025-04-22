@@ -23,7 +23,7 @@ export default function LoginForm() {
     handleSubmit,
     setError,
   } = useForm<LoginSchema>({
-    mode: 'all',
+    mode: 'all', // onBlur
     resolver: zodResolver(loginSchema),
     defaultValues: loginDefaultValues,
   })

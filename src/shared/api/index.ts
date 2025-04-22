@@ -1,5 +1,6 @@
 import { LoginFormValues, RegisterFormValues } from '@/shared/lib/types'
 
+
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
 type Response = {
@@ -8,7 +9,7 @@ type Response = {
   error?: string[]
 }
 
-const request = async <T>(uri: string, method: HttpMethod, body?: T, headers: HeadersInit = {}): Promise<Response> => {
+export const request = async <T>(uri: string, method: HttpMethod = 'POST', body?: T, headers: HeadersInit = {}): Promise<Response> => {
   const options: RequestInit = {
     method: method,
     headers: {

@@ -66,15 +66,13 @@ export default function RegisterForm() {
             <p className="text-red-500 italic text-sm">{getErrorMessage(errors.username.message as string)}</p>
           )}
         </div>
+        {/* Это все компонент Input вместе с div*/}
         <div className="w-full flex flex-col gap-2">
           <h2 className="font-semibold dark:text-white">{t('email')}</h2>
           <Input
             placeholder={t('email-input')}
-            {...register('email', {
-              required: 'email-required',
-              pattern: { value: /\S+@\S+\.\S+/, message: 'email-invalid' },
-            })}
-            error={!!errors.email}
+            {...register('email')}
+            error={errors.email} // Убрать boolean, сделать передачу ошибки когда вынесу компонент
           />
           {errors.email && (
             <p className="text-red-500 italic text-sm">{getErrorMessage(errors.email.message as string)}</p>
@@ -85,10 +83,7 @@ export default function RegisterForm() {
           <Input
             placeholder={t('password-input')}
             type="password"
-            {...register('password', {
-              required: 'password-required',
-              minLength: { value: 6, message: 'password-short' },
-            })}
+            {...register('password')}
             error={!!errors.password}
           />
           {errors.password && (
@@ -100,9 +95,7 @@ export default function RegisterForm() {
           <Input
             placeholder={t('password-repeat-input')}
             type="password"
-            {...register('repeatPassword', {
-              required: 'password-repeat-required',
-            })}
+            {...register('repeatPassword')}
             error={!!errors.repeatPassword}
           />
           {errors.repeatPassword && (

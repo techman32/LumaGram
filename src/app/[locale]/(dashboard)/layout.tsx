@@ -6,7 +6,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <Header />
-      <main className="pt-[53px] pb-4">{children}</main>
+      <main className="pt-[calc(53px+1rem)] pb-4">{children}</main>
       <Footer />
     </>
   )

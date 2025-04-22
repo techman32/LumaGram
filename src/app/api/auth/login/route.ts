@@ -24,6 +24,24 @@ export const POST = async (req: NextRequest) => {
         path: '/',
       })
 
+      res.cookies.set({
+        name: 'userId',
+        value: data.userId,
+        httpOnly: true,
+        // secure: process.env.NODE_ENV === 'production', // Только по HTTPS в проде
+        // sameSite: 'strict', // Только с того же сайта
+        path: '/',
+      })
+
+      res.cookies.set({
+        name: 'test',
+        value: '123',
+        httpOnly: true, // запрещает изменять в браузере
+        // secure: process.env.NODE_ENV === 'production', // Только по HTTPS в проде
+        // sameSite: 'strict', // Только с того же сайта
+        path: '/',
+      })
+
       return res
     }
 

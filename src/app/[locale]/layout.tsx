@@ -8,6 +8,7 @@ import { routing } from '@/i18n/routing'
 import Footer from '@/entities/footer/ui'
 import { NextThemesProvider } from '@/shared/providers/NextThemesProvider'
 import Header from '@/entities/header/ui/Header'
+import SWRProvider from '@/shared/providers/SWRProvider'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -41,7 +42,7 @@ export default async function LocaleLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 dark:bg-black/10`}>
         <NextIntlClientProvider>
           <NextThemesProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            {children}
+            <SWRProvider>{children}</SWRProvider>
           </NextThemesProvider>
         </NextIntlClientProvider>
       </body>

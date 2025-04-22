@@ -1,7 +1,8 @@
-'use client'
 import { useEffect, useState, useRef, ChangeEvent } from 'react'
 import Button from '@/shared/ui/Button'
 import { Image as ImageIcon } from 'lucide-react'
+import Image from 'next/image'
+import TextArea from '@/shared/ui/TextArea'
 
 export default function ImageUploadModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
@@ -61,9 +62,22 @@ export default function ImageUploadModal({ isOpen, onClose }: { isOpen: boolean;
     fileInputRef.current?.click()
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (selectedFile) {
-      console.log('Выбран файл:', selectedFile.name)
+      try {
+        const response = await fetch('http://109.73.197.191/api/posts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify(selectedFile)
+        })
+        const data = await response.json()
+        console.log(data)
+      } catch (err) {
+        console.error(err)
+      }
       onClose()
     }
   }
@@ -71,7 +85,7 @@ export default function ImageUploadModal({ isOpen, onClose }: { isOpen: boolean;
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/10 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/10 backdrop-blur-sm bg-opacity-50 flex items-center justify-center gap-2 z-50 p-4">
       <div className="bg-white dark:bg-black dark:border dark:border-white/10 rounded-lg shadow-xl w-full max-w-md overflow-hidden">
         <div className="p-6">
           <div
@@ -90,12 +104,18 @@ export default function ImageUploadModal({ isOpen, onClose }: { isOpen: boolean;
             {previewUrl ? (
               <div className="flex flex-col items-center justify-center space-y-4">
                 <div className="relative w-full aspect-square overflow-hidden rounded-md">
-                  <img src={previewUrl} alt="Предпросмотр" className="w-full h-full object-cover" />
+                  <Image
+                    src={previewUrl}
+                    alt="Предпросмотр"
+                    width={fileInputRef.current?.width}
+                    height={fileInputRef.current?.height}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <p className="text-sm text-black dark:text-white opacity-50">Нажмите для выбора другой фотографии</p>
               </div>
             ) : (
-              <label htmlFor="file-upload" className="cursor-pointer">
+              <label htmlFor="file-upload" className="cursor-pointer -z-10">
                 <div className="flex flex-col items-center justify-center space-y-2">
                   <ImageIcon size={48} />
                   <p className="text-lg font-medium text-gray-700 dark:text-gray-300">Выберите фотографию</p>
@@ -105,13 +125,20 @@ export default function ImageUploadModal({ isOpen, onClose }: { isOpen: boolean;
             )}
           </div>
         </div>
-
+      </div>
+      <div className="bg-white dark:bg-black dark:border border-white/10 rounded-lg shadow-xl w-full max-w-md overflow-hidden">
+        <div className="p-6">
+          <div className="flex flex-col items-center justify-center gap-2">
+            <h2 className="font-semibold text-left w-full">Описание</h2>
+            <TextArea placeholder="Введите описание" className="w-full" />
+          </div>
+        </div>
         <div className="bg-gray-50 dark:bg-white/10 px-4 py-3 flex justify-end space-x-3">
           <Button appearance="secondary" onClick={onClose}>
             Отмена
           </Button>
           <Button appearance="primary" onClick={handleSubmit} disabled={!selectedFile}>
-            Далее
+            Отправить
           </Button>
         </div>
       </div>

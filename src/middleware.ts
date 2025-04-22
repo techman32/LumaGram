@@ -12,6 +12,7 @@ export default async function middleware(request: NextRequest) {
   const response = intlMiddleware(request)
 
   const accessToken = request.cookies.get('accessToken')?.value
+  console.log(accessToken) // Проверить накинуть куки отсюда в /api
   const pathname = request.nextUrl.pathname
 
   console.log('accessToken', accessToken)

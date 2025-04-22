@@ -12,10 +12,12 @@ export type RegisterFormValues = {
 }
 
 export type Profile = {
+  id: string
   username: string
-  posts: number
-  followers: number
-  following: number
-  name: string
-  description: string
+  postsCount: number
+  name?: string
+  description?: string
+  image?: string
+  isPublic: boolean
+  activityCategory: string
 }
