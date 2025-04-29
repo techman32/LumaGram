@@ -20,6 +20,14 @@
     "repeat-password": "Повторите пароль",
     "repeated-password": "Подтвердите пароль"
   },
+  "Errors": {
+    "username-small": "Имя пользователя слишком короткое",
+    "username-long": "Имя пользователя слишком длинное",
+    "email-not-valid": "Невалидный Email",
+    "password-small": "Пароль слишком короткий",
+    "password-not-match": "Пароли не совпадают",
+    "unknown": "Неизвестная ошибка"
+  },
   "HomePage": {
     "title": "Домашняя страница"
   }

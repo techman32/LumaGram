@@ -20,6 +20,14 @@
     "repeat-password": "Repeat the password",
     "repeated-password": "Repeated password"
   },
+  "Errors": {
+    "username-small": "Username is too short",
+    "username-long": "Username is too long",
+    "email-not-valid": "Invalid Email",
+    "password-small": "Password is too short",
+    "password-not-match": "Passwords doesn't match",
+    "unknown": "Unknown error"
+  },
   "HomePage": {
     "title": "Home page"
   }
