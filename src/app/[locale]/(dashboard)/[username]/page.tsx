@@ -1,0 +1,86 @@
+export default async function ProfilePage({ params }: { params: Promise<{ username: string }> }) {
+  const { username } = await params
+
+  return (
+    <div className="h-full overflow-scroll">
+      <h1>Профиль пользователя с username: {username}</h1>
+      <p>А</p>
+      <p>в</p>
+      <p>т</p>
+      <p>о</p>
+      <p>р</p>
+      <p>и</p>
+      <p>з</p>
+      <p>а</p>
+      <p>ц</p>
+      <p>и</p>
+      <p>я</p>
+      <p>А</p>
+      <p>в</p>
+      <p>т</p>
+      <p>о</p>
+      <p>р</p>
+      <p>и</p>
+      <p>з</p>
+      <p>а</p>
+      <p>ц</p>
+      <p>и</p>
+      <p>я</p>
+      <p>А</p>
+      <p>в</p>
+      <p>т</p>
+      <p>о</p>
+      <p>р</p>
+      <p>и</p>
+      <p>з</p>
+      <p>а</p>
+      <p>ц</p>
+      <p>и</p>
+      <p>я</p>
+      <p>А</p>
+      <p>в</p>
+      <p>т</p>
+      <p>о</p>
+      <p>р</p>
+      <p>и</p>
+      <p>з</p>
+      <p>а</p>
+      <p>ц</p>
+      <p>и</p>
+      <p>я</p>
+      <p>А</p>
+      <p>в</p>
+      <p>т</p>
+      <p>о</p>
+      <p>р</p>
+      <p>и</p>
+      <p>з</p>
+      <p>а</p>
+      <p>ц</p>
+      <p>и</p>
+      <p>я</p>
+      <p>А</p>
+      <p>в</p>
+      <p>т</p>
+      <p>о</p>
+      <p>р</p>
+      <p>и</p>
+      <p>з</p>
+      <p>а</p>
+      <p>ц</p>
+      <p>и</p>
+      <p>я</p>
+      <p>А</p>
+      <p>в</p>
+      <p>т</p>
+      <p>о</p>
+      <p>р</p>
+      <p>и</p>
+      <p>з</p>
+      <p>а</p>
+      <p>ц</p>
+      <p>и</p>
+      <p>я</p>
+    </div>
+  )
+}

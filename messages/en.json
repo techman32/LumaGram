@@ -1,4 +1,7 @@
 {
+  "Footer": {
+    "copyright": "Copyright © {date} Applice Studio"
+  },
   "HomePage": {
     "title": "Home page"
   }

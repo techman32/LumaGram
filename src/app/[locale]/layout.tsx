@@ -39,7 +39,7 @@ export default async function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <NextIntlClientProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            {children}
+            <div className="flex flex-col relative overflow-x-hidden h-dvh">{children}</div>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

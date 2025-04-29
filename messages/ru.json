@@ -1,4 +1,7 @@
 {
+  "Footer": {
+    "copyright": "Все права защищены © {date} Applice Studio"
+  },
   "HomePage": {
     "title": "Домашняя страница"
   }
