@@ -5,7 +5,7 @@ import { ReactNode } from 'react'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { routing } from '@/i18n/routing'
 import { notFound } from 'next/navigation'
-import { ThemeProvider } from '@/shared/lib/providers/ThemeProvider'
+import { ThemeProvider } from '@/shared/providers/ThemeProvider'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
