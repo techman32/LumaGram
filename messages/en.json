@@ -2,6 +2,24 @@
   "Footer": {
     "copyright": "Copyright © {date} Applice Studio"
   },
+  "AuthPage": {
+    "title": "Welcome to Lumagram!",
+    "sign-up": "Sign Up",
+    "sign-in": "Sign In",
+    "register": "Sign up",
+    "login": "Sign in",
+    "have-account": "Already have an account?",
+    "no-account": "No account yet?",
+    "enter-username": "Enter your username",
+    "username": "Username",
+    "enter-password": "Enter your password",
+    "password": "Password",
+    "remember-me": "Remember me",
+    "enter-email": "Enter your Email",
+    "email": "Email",
+    "repeat-password": "Repeat the password",
+    "repeated-password": "Repeated password"
+  },
   "HomePage": {
     "title": "Home page"
   }

@@ -2,6 +2,24 @@
   "Footer": {
     "copyright": "Все права защищены © {date} Applice Studio"
   },
+  "AuthPage": {
+    "title": "Добро пожаловать в Lumagram!",
+    "sign-up": "Регистрация",
+    "sign-in": "Вход",
+    "register": "Зарегистрироваться",
+    "login": "Войти",
+    "have-account": "Уже есть аккаунт?",
+    "no-account": "Еще нет аккаунта?",
+    "enter-username": "Введите имя пользователя",
+    "username": "Имя пользователя",
+    "enter-password": "Введите пароль",
+    "password": "Пароль",
+    "remember-me": "Запомнить меня",
+    "enter-email": "Введите Email",
+    "email": "Email",
+    "repeat-password": "Повторите пароль",
+    "repeated-password": "Подтвердите пароль"
+  },
   "HomePage": {
     "title": "Домашняя страница"
   }
