@@ -4,6 +4,7 @@ export function useErrorMessages() {
   const t = useTranslations('Errors')
 
   return (errorCode: string): string => {
-    return t(errorCode, { defaultValue: t('unknown') })
+    const normalizedCode = errorCode.toLowerCase().replace(/\s+/g, '-').replace(/\./g, '')
+    return t(normalizedCode, { defaultValue: t('unknown') })
   }
 }
