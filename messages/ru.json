@@ -26,7 +26,11 @@
     "email-not-valid": "Невалидный Email",
     "password-small": "Пароль слишком короткий",
     "password-not-match": "Пароли не совпадают",
-    "unknown": "Неизвестная ошибка"
+    "unknown": "Неизвестная ошибка",
+    "the-username-has-already-been-taken": "Это имя пользователя уже занято",
+    "the-email-has-already-been-taken": "Эта почта уже занята",
+    "user-with-this-username-was-not-found": "Пользователь с таким именем не найден",
+    "incorrect-password": "Неверный пароль"
   },
   "HomePage": {
     "title": "Домашняя страница"

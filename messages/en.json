@@ -26,7 +26,11 @@
     "email-not-valid": "Invalid Email",
     "password-small": "Password is too short",
     "password-not-match": "Passwords doesn't match",
-    "unknown": "Unknown error"
+    "unknown": "Unknown error",
+    "the-username-has-already-been-taken": "The username has already been taken",
+    "the-email-has-already-been-taken": "The Email has already been taken",
+    "user-with-this-username-was-not-found": "User with this username was not found",
+    "incorrect-password": "Incorrect password"
   },
   "HomePage": {
     "title": "Home page"
