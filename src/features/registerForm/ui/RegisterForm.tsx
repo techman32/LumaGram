@@ -16,11 +16,11 @@ export default function RegisterForm() {
 
   const {
     register,
-    formState: { errors },
+    formState: { errors, isValid = false },
     handleSubmit,
     setError,
   } = useForm({
-    mode: 'onSubmit',
+    mode: 'all',
     resolver: zodResolver(registerSchema),
     defaultValues: registerDefaultValues,
   })
@@ -70,7 +70,7 @@ export default function RegisterForm() {
         {...register('repeatedPassword')}
         error={errors.repeatedPassword && getErrorMessage(errors.repeatedPassword.message as string)}
       />
-      <Button block appearance="primary">
+      <Button block appearance="primary" disabled={!isValid}>
         {t('sign-up')}
       </Button>
     </form>

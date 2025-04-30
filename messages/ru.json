@@ -30,7 +30,9 @@
     "the-username-has-already-been-taken": "Это имя пользователя уже занято",
     "the-email-has-already-been-taken": "Эта почта уже занята",
     "user-with-this-username-was-not-found": "Пользователь с таким именем не найден",
-    "incorrect-password": "Неверный пароль"
+    "incorrect-password": "Неверный пароль",
+    "the-password-field-is-required": "Введите пароль!",
+    "the-username-field-is-required": "Введите имя пользователя!"
   },
   "HomePage": {
     "title": "Домашняя страница"

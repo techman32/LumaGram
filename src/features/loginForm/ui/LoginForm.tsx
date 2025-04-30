@@ -17,27 +17,29 @@ export default function LoginForm() {
 
   const {
     register,
-    formState: { errors },
+    formState: { errors, isValid, isDirty },
     handleSubmit,
     setError,
   } = useForm({
-    mode: 'onSubmit',
+    mode: 'all',
     resolver: zodResolver(loginSchema),
     defaultValues: loginDefaultValues,
   })
 
   const onSubmit = async (data: LoginDto) => {
-    const result = await loginUser(data)
+    if (isValid) {
+      const result = await loginUser(data)
 
-    if (!result.success && result.error) {
-      result.error.forEach(({ field, message }) => {
-        setError(field as keyof LoginDto, {
-          type: 'manual',
-          message,
+      if (!result.success && result.error) {
+        result.error.forEach(({ field, message }) => {
+          setError(field as keyof LoginDto, {
+            type: 'manual',
+            message,
+          })
         })
-      })
-    } else {
-      router.push(`/${result.data?.username}`)
+      } else {
+        router.push(`/${result.data?.username}`)
+      }
     }
   }
 
@@ -58,7 +60,7 @@ export default function LoginForm() {
         error={errors.password && getErrorMessage(errors.password.message as string)}
       />
       <Checkbox id={'rememberMe'} label={t('remember-me')} {...register('rememberMe')} />
-      <Button block appearance="primary">
+      <Button block appearance="primary" disabled={!isValid || !isDirty}>
         {t('login')}
       </Button>
     </form>

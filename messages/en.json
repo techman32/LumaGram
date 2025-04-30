@@ -30,7 +30,9 @@
     "the-username-has-already-been-taken": "The username has already been taken",
     "the-email-has-already-been-taken": "The Email has already been taken",
     "user-with-this-username-was-not-found": "User with this username was not found",
-    "incorrect-password": "Incorrect password"
+    "incorrect-password": "Incorrect password",
+    "the-password-field-is-required": "Enter your password!",
+    "the-username-field-is-required": "Enter your username!"
   },
   "HomePage": {
     "title": "Home page"
