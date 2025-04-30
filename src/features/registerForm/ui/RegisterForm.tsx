@@ -6,10 +6,13 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { registerDefaultValues, registerSchema } from '@/features/registerForm/model/schema'
 import { useErrorMessages } from '@/shared/lib/errorMessages'
 import { RegisterFormDto } from '@/shared/model/types/auth'
+import { registerUser } from '@/shared/api/auth/api'
+import { useRouter } from '@/i18n/navigation'
 
 export default function RegisterForm() {
   const t = useTranslations('AuthPage')
   const getErrorMessage = useErrorMessages()
+  const router = useRouter()
 
   const {
     register,
@@ -23,7 +26,18 @@ export default function RegisterForm() {
   })
 
   const onSubmit = async (data: RegisterFormDto) => {
-    console.log(data)
+    const result = await registerUser(data)
+
+    if (!result.success && result.error) {
+      result.error.forEach(({ field, message }) => {
+        setError(field as keyof RegisterFormDto, {
+          type: 'manual',
+          message,
+        })
+      })
+    } else {
+      router.push(`/${result.data?.username}`)
+    }
   }
 
   return (

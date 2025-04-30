@@ -7,10 +7,13 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { loginDefaultValues, loginSchema } from '@/features/loginForm/model/schema'
 import { LoginDto } from '@/shared/model/types/auth'
 import { useErrorMessages } from '@/shared/lib/errorMessages'
+import { loginUser } from '@/shared/api/auth/api'
+import { useRouter } from '@/i18n/navigation'
 
 export default function LoginForm() {
   const t = useTranslations('AuthPage')
   const getErrorMessage = useErrorMessages()
+  const router = useRouter()
 
   const {
     register,
@@ -24,7 +27,18 @@ export default function LoginForm() {
   })
 
   const onSubmit = async (data: LoginDto) => {
-    console.log(data)
+    const result = await loginUser(data)
+
+    if (!result.success && result.error) {
+      result.error.forEach(({ field, message }) => {
+        setError(field as keyof LoginDto, {
+          type: 'manual',
+          message,
+        })
+      })
+    } else {
+      router.push(`/${result.data?.username}`)
+    }
   }
 
   return (
