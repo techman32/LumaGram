@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from 'react'
 import cn from 'classnames'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  appearance?: 'scalable' | 'ghost' | 'primary'
+  appearance?: 'scalable' | 'ghost' | 'primary' | 'secondary'
   size?: 'small' | 'medium'
   block?: boolean
 }
@@ -17,6 +17,7 @@ export default function Button({ appearance = 'ghost', size = 'medium', block = 
           'hover:bg-gray-200 dark:hover:bg-white/10': appearance === 'ghost',
           'bg-black disabled:opacity-80 text-white hover:bg-black/80 py-2 dark:bg-white dark:text-black dark:hover:bg-gray-200':
             appearance === 'primary',
+          'border border-gray-200 hover:bg-gray-100 px-2': appearance === 'secondary',
         },
         {
           'text-sm': size === 'small',
