@@ -1,4 +1,4 @@
-import AuthForm from '@/widgets/authForm/ui/AuthForm'
+import AuthForm from '@/widgets/auth/ui/AuthForm'
 import { getTranslations } from 'next-intl/server'
 
 export default async function AuthPage() {

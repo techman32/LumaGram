@@ -1,5 +1,5 @@
 import { InputHTMLAttributes } from 'react'
-import InputLabel from '@/shared/ui/InputLabel'
+import Label from '@/shared/ui/Label'
 import ErrorMessage from '@/shared/ui/ErrorMessage'
 import cn from 'classnames'
 
@@ -12,7 +12,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 export default function Input({ label, block, error, ...props }: InputProps) {
   return (
     <div className="flex flex-col gap-2">
-      {label && <InputLabel label={label} />}
+      {label && <Label label={label} />}
       <input
         className={cn(
           'p-2 outline-none border rounded-md',
