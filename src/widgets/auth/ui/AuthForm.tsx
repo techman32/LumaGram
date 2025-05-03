@@ -1,8 +1,8 @@
 'use client'
 import { useState } from 'react'
-import { FormMode } from '@/widgets/authForm/model/types'
+import { FormMode } from '@/widgets/auth/model/types'
 import { useTranslations } from 'next-intl'
-import SwitchFormMode from '@/widgets/authForm/ui/SwitchFormMode'
+import SwitchFormMode from '@/widgets/auth/ui/SwitchFormMode'
 import RegisterForm from '@/features/registerForm/ui/RegisterForm'
 import LoginForm from '@/features/loginForm/ui/LoginForm'
 

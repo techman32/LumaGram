@@ -1,4 +1,4 @@
-import { SwitchFormModeProps } from '@/widgets/authForm/model/types'
+import { SwitchFormModeProps } from '@/widgets/auth/model/types'
 import { useTranslations } from 'next-intl'
 
 export default function SwitchFormMode({ mode, onSwitch }: SwitchFormModeProps) {
