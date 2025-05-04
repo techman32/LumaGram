@@ -20,6 +20,24 @@
     "repeat-password": "Повторите пароль",
     "repeated-password": "Подтвердите пароль"
   },
+  "EditProfilePage": {
+    "enter-username": "Введите имя пользователя",
+    "username": "Имя пользователя",
+    "enter-name": "Введите имя",
+    "name": "Имя",
+    "enter-description": "Введите описание",
+    "description": "Описание",
+    "enter-category": "Введите категорию профиля",
+    "category": "Категория профиля",
+    "description-name-input": "Например: Иван, Иван Иванов",
+    "description-category-input": "Например: дизайнер, программист и т.д.",
+    "description-description-input": "Расскажите немного о себе",
+    "current-username": "Ваше текущее имя пользователя {username}",
+    "closed-profile": "Закрытый профиль",
+    "change-photo": "Изменить фотографию",
+    "apply": "Применить",
+    "cancel": "Отмена"
+  },
   "Errors": {
     "username-small": "Имя пользователя слишком короткое",
     "username-long": "Имя пользователя слишком длинное",
@@ -32,7 +50,13 @@
     "user-with-this-username-was-not-found": "Пользователь с таким именем не найден",
     "incorrect-password": "Неверный пароль",
     "the-password-field-is-required": "Введите пароль!",
-    "the-username-field-is-required": "Введите имя пользователя!"
+    "the-username-field-is-required": "Введите имя пользователя!",
+    "category-long": "Название категории слишком длинное",
+    "name-long": "Имя слишком длинное",
+    "description-long": "Описание слишком длинное"
+  },
+  "Other": {
+    "return-button": "Назад"
   },
   "HomePage": {
     "title": "Домашняя страница"

@@ -2,6 +2,7 @@ import { ProfileBody } from '@/shared/lib/types/profile'
 import Photo from '@/shared/ui/Photo'
 import Button from '@/shared/ui/Button'
 import { cookies } from 'next/headers'
+import Link from 'next/link'
 
 export default async function ProfileHeader(profile: ProfileBody) {
   const cookieStore = await cookies()
@@ -14,9 +15,11 @@ export default async function ProfileHeader(profile: ProfileBody) {
         <div className="flex items-center gap-4">
           <h2 className="text-xl font-bold">{profile.username}</h2>
           {usernameCookie === profile.username && (
-            <Button appearance="secondary" size="small">
-              Редактировать
-            </Button>
+            <Link href={`/${usernameCookie}/edit`}>
+              <Button appearance="secondary" size="small">
+                Редактировать
+              </Button>
+            </Link>
           )}
         </div>
         <div className="flex gap-2 font-semibold">

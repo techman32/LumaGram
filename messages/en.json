@@ -20,6 +20,24 @@
     "repeat-password": "Repeat the password",
     "repeated-password": "Repeated password"
   },
+  "EditProfilePage": {
+    "enter-username": "Enter your username",
+    "username": "Username",
+    "enter-name": "Enter your name",
+    "name": "Name",
+    "enter-description": "Enter your bio",
+    "description": "Bio",
+    "enter-category": "Enter your profile category",
+    "category": "Profile category",
+    "description-name-input": "Ex.: John, John Doe",
+    "description-category-input": "Ex.: Designer, Programmer etc.",
+    "description-description-input": "A little about yourself",
+    "current-username": "Your current username is {username}",
+    "closed-profile": "Private account",
+    "change-photo": "Change photo",
+    "apply": "Apply",
+    "cancel": "Cancel"
+  },
   "Errors": {
     "username-small": "Username is too short",
     "username-long": "Username is too long",
@@ -32,7 +50,13 @@
     "user-with-this-username-was-not-found": "User with this username was not found",
     "incorrect-password": "Incorrect password",
     "the-password-field-is-required": "Enter your password!",
-    "the-username-field-is-required": "Enter your username!"
+    "the-username-field-is-required": "Enter your username!",
+    "category-long": "Category name is too long",
+    "name-long": "Name is too long",
+    "description-long": "Bio is too long"
+  },
+  "Other": {
+    "return-button": "Back"
   },
   "HomePage": {
     "title": "Home page"
