@@ -38,6 +38,11 @@
     "apply": "Apply",
     "cancel": "Cancel"
   },
+  "Profile": {
+    "posts-count": "{postsCount} posts",
+    "follower-count": "{followerCount} followers",
+    "following-count": "{followingCount} following"
+  },
   "Errors": {
     "username-small": "Username is too short",
     "username-long": "Username is too long",

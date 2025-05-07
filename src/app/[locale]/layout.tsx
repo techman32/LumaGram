@@ -6,6 +6,7 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { routing } from '@/i18n/routing'
 import { notFound } from 'next/navigation'
 import { ThemeProvider } from '@/shared/providers/ThemeProvider'
+import { SnackbarProvider } from '@/shared/providers/SnackbarProvider'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -39,7 +40,9 @@ export default async function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <NextIntlClientProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            <div className="flex flex-col relative overflow-x-hidden h-dvh">{children}</div>
+            <SnackbarProvider>
+              <div className="flex flex-col relative overflow-x-hidden h-dvh">{children}</div>
+            </SnackbarProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

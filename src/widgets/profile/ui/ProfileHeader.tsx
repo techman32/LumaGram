@@ -3,13 +3,14 @@ import Photo from '@/shared/ui/Photo'
 import Button from '@/shared/ui/Button'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
+import ProfileCounts from '@/features/profileInfo/ui/ProfileCounts'
 
-export default async function ProfileHeader(profile: ProfileBody) {
+export default async function ProfileHeader({ profile }: { profile: ProfileBody }) {
   const cookieStore = await cookies()
   const usernameCookie = cookieStore.get('username')?.value
 
   return (
-    <div className="my-4 gap-4 flex flex-col items-center sm:flex-row sm:gap-8 sm:my-8">
+    <div className="mt-4 pb-4 gap-4 flex flex-col items-center border-b border-gray-200 dark:border-white/20 sm:items-start sm:flex-row sm:gap-8 sm:mt-8 sm:pb-8">
       <Photo size={128} src={profile.image} />
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-4">
@@ -22,15 +23,15 @@ export default async function ProfileHeader(profile: ProfileBody) {
             </Link>
           )}
         </div>
-        <div className="flex gap-2 font-semibold">
-          <p>{profile.postsCount} posts</p>
-          <p>{profile.followerCount ?? 0} followers</p>
-          <p>{profile.followingCount ?? 0} following</p>
-        </div>
+        <ProfileCounts
+          postsCount={profile.postsCount}
+          followerCount={profile.followerCount}
+          followingCount={profile.followingCount}
+        />
         <div className="flex flex-col gap-1">
-          <p className="font-medium">{profile.name ?? 'John Doe'}</p>
-          <p className="text-sm opacity-80">{profile.activityCategory ?? 'Designer'}</p>
-          <p>{profile.description ?? 'Простой человек с большой душой.'}</p>
+          <p className="font-medium">{profile.name}</p>
+          <p className="text-sm opacity-80">{profile.activityCategory}</p>
+          <p>{profile.description}</p>
         </div>
       </div>
     </div>

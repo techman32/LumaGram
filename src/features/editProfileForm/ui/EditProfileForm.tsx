@@ -8,10 +8,22 @@ import { useTranslations } from 'next-intl'
 import { useErrorMessages } from '@/shared/lib/errorMessages'
 import Textarea from '@/shared/ui/Textarea'
 import Toggle from '@/shared/ui/Toggle'
+import { editProfile } from '@/shared/api/profile/api'
+import { EditedProfileData } from '@/shared/lib/types/profile'
+import { useEffect } from 'react'
+import { useSnackbar } from '@/shared/providers/SnackbarProvider'
 
-export default function EditProfileForm() {
+type EditProfileFormProps = {
+  name?: string
+  activityCategory?: string
+  description?: string
+  isPublic?: boolean
+}
+
+export default function EditProfileForm({ profile }: { profile: EditProfileFormProps }) {
   const t = useTranslations('EditProfilePage')
   const getErrorMessage = useErrorMessages()
+  const { showSnackbar } = useSnackbar()
 
   const {
     register,
@@ -19,14 +31,26 @@ export default function EditProfileForm() {
     handleSubmit,
     setError,
     control,
+    reset,
   } = useForm({
     mode: 'all',
     resolver: zodResolver(editProfileSchema),
     defaultValues: editProfileDefaultValues,
   })
 
-  const onSubmit = async (data: any) => {
-    console.log(data)
+  useEffect(() => {
+    if (profile) {
+      reset(profile)
+    }
+  }, [profile, reset])
+
+  const onSubmit = async (data: EditedProfileData) => {
+    const response = await editProfile(data)
+    if (response.success) {
+      showSnackbar('Изменения сохрнены', 'success')
+    } else {
+      showSnackbar('Произошла ошибка', 'error')
+    }
   }
 
   return (
@@ -44,8 +68,8 @@ export default function EditProfileForm() {
         placeholder={t('enter-category')}
         description={t('description-category-input')}
         label={t('category')}
-        {...register('category')}
-        error={errors.category && getErrorMessage(errors.category.message as string)}
+        {...register('activityCategory')}
+        error={errors.activityCategory && getErrorMessage(errors.activityCategory.message as string)}
       />
       <Textarea
         label={t('description')}
@@ -60,11 +84,11 @@ export default function EditProfileForm() {
         render={({ field }) => (
           <div className="flex flex-col gap-2">
             <h2 className="font-semibold">{t('closed-profile')}</h2>
-            <Toggle checked={field.value} onChange={field.onChange} />
+            <Toggle checked={!field.value} onChange={(val) => field.onChange(!val)} />
           </div>
         )}
       />
-      <Button block appearance="primary" disabled={!isValid || !isDirty}>
+      <Button block appearance="primary">
         {t('apply')}
       </Button>
     </form>

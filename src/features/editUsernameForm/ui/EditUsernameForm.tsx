@@ -5,25 +5,45 @@ import { useTranslations } from 'next-intl'
 import { useErrorMessages } from '@/shared/lib/errorMessages'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { editUsernameDefaultValues, editUsernameSchema } from '@/features/editUsernameForm/model/schema'
+import {
+  editUsernameDefaultValues,
+  EditUsernameSchema,
+  editUsernameSchema,
+} from '@/features/editUsernameForm/model/schema'
+import { useEffect } from 'react'
+import { useSnackbar } from '@/shared/providers/SnackbarProvider'
+import { editUsername } from '@/shared/api/profile/api'
 
 export default function EditUsernameForm({ username }: { username: string }) {
   const t = useTranslations('EditProfilePage')
   const getErrorMessage = useErrorMessages()
+  const { showSnackbar } = useSnackbar()
 
   const {
     register,
     formState: { errors },
     handleSubmit,
     setError,
+    reset,
   } = useForm({
     mode: 'all',
     resolver: zodResolver(editUsernameSchema),
     defaultValues: editUsernameDefaultValues,
   })
 
-  const onSubmit = async (data: any) => {
-    console.log(data)
+  useEffect(() => {
+    if (username) {
+      reset({ username })
+    }
+  }, [username, reset])
+
+  const onSubmit = async (data: EditUsernameSchema) => {
+    const response = await editUsername(data)
+    if (response.success) {
+      showSnackbar('Имя пользователя изменено', 'success')
+    } else {
+      showSnackbar('Произошла ошибка', 'error')
+    }
   }
 
   return (

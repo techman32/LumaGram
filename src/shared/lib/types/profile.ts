@@ -11,3 +11,14 @@ export type ProfileBody = {
   /** Количество подписчиков TODO: убрать опциональность */
   followingCount?: number
 }
+
+export type EditedProfileData = {
+  name?: string
+  description?: string
+  activityCategory?: string
+  isPublic?: boolean
+}
+
+export type EditedUsernameData = {
+  username: string
+}

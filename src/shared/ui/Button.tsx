@@ -15,7 +15,7 @@ export default function Button({ appearance = 'ghost', size = 'medium', block = 
         {
           'hover:scale-110': appearance === 'scalable',
           'hover:bg-gray-200 dark:hover:bg-white/10': appearance === 'ghost',
-          'bg-black text-white hover:bg-black/80 py-2 dark:bg-white dark:text-black dark:hover:bg-gray-200':
+          'bg-black text-white hover:bg-black/80 p-2 dark:bg-white dark:text-black dark:hover:bg-gray-200':
             appearance === 'primary',
           'border border-gray-200 hover:bg-gray-100 dark:border-white/20 dark:hover:bg-white/20 px-2':
             appearance === 'secondary',

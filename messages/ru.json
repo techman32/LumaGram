@@ -38,6 +38,11 @@
     "apply": "Применить",
     "cancel": "Отмена"
   },
+  "Profile": {
+    "posts-count": "{postsCount} постов",
+    "follower-count": "{followerCount} подписок",
+    "following-count": "{followingCount} подписчиков"
+  },
   "Errors": {
     "username-small": "Имя пользователя слишком короткое",
     "username-long": "Имя пользователя слишком длинное",

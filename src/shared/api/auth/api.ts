@@ -1,7 +1,7 @@
 'use server'
 import { AuthBody, LoginData, RegisterData } from '@/shared/lib/types/auth'
 import { ApiError, sendRequest } from '@/shared/api/api'
-import { setAuthCookies } from '@/shared/lib/authCookies'
+import { setAuthCookies } from '@/shared/lib/cookies'
 
 export const registerUser = async (data: RegisterData) => {
   try {

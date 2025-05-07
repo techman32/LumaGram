@@ -56,6 +56,17 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(`/${locale}/auth`, request.url))
   }
 
+  const segments = pathname.split('/')
+  const isEditPage = segments.length === 4 && segments[3] === 'edit'
+  const urlUsername = segments[2]
+
+  if (isEditPage) {
+    const cookieUsername = request.cookies.get('username')?.value
+    if (!cookieUsername || cookieUsername !== urlUsername) {
+      return NextResponse.redirect(new URL(`/${locale}/${urlUsername}`, request.url))
+    }
+  }
+
   return response
 }
 
