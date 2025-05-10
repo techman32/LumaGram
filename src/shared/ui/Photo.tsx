@@ -19,6 +19,7 @@ export default function Photo({ size = 128, src }: PhotoProps) {
           width={size}
           height={size}
           className="object-cover w-full h-full rounded-full"
+          priority={false}
         />
       ) : (
         <Camera className="text-gray-400 dark:text-black/60" size={size / 2} />

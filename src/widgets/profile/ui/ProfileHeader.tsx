@@ -11,7 +11,7 @@ export default async function ProfileHeader({ profile }: { profile: ProfileBody 
 
   return (
     <div className="mt-4 pb-4 gap-4 flex flex-col items-center border-b border-gray-200 dark:border-white/20 sm:items-start sm:flex-row sm:gap-8 sm:mt-8 sm:pb-8">
-      <Photo size={128} src={`http://localhost:8000/${profile.image?.url}`} />
+      <Photo src={profile.image ? `http://localhost:8000/${profile.image.url}` : ''} />
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-4">
           <h2 className="text-xl font-bold">{profile.username}</h2>

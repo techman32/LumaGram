@@ -16,6 +16,7 @@ import { editUsername } from '@/shared/api/profile/api'
 
 export default function EditUsernameForm({ username }: { username: string }) {
   const t = useTranslations('EditProfilePage')
+  const tSnackbar = useTranslations('Snackbar')
   const getErrorMessage = useErrorMessages()
   const { showSnackbar } = useSnackbar()
 
@@ -40,9 +41,9 @@ export default function EditUsernameForm({ username }: { username: string }) {
   const onSubmit = async (data: EditUsernameSchema) => {
     const response = await editUsername(data)
     if (response.success) {
-      showSnackbar('Имя пользователя изменено', 'success')
+      showSnackbar(tSnackbar('username-changed'), 'success')
     } else {
-      showSnackbar('Произошла ошибка', 'error')
+      showSnackbar(tSnackbar('has-error'), 'error')
     }
   }
 

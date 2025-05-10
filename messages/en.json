@@ -60,6 +60,13 @@
     "name-long": "Name is too long",
     "description-long": "Bio is too long"
   },
+  "Snackbar": {
+    "has-error": "An error occurred",
+    "username-changed": "Username has been changed",
+    "wrong-photo": "Failed to refresh the photo, reload the page and try again",
+    "changed": "Changes have been saved",
+    "photo-changed": "Photo has been updated"
+  },
   "Other": {
     "return-button": "Back"
   },

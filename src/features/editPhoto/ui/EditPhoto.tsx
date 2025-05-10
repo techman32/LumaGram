@@ -1,15 +1,60 @@
 'use client'
+import { useEffect, useState } from 'react'
 import Photo from '@/shared/ui/Photo'
 import Button from '@/shared/ui/Button'
 import { useTranslations } from 'next-intl'
+import PhotoPickerModal from '@/features/photoPickerModal/ui/PhotoPickerModal'
+import { editPhoto } from '@/shared/api/profile/api'
+import { useSnackbar } from '@/shared/providers/SnackbarProvider'
+import { Image } from '@/shared/lib/types/profile'
 
-export default function EditPhoto() {
+type EditPhotoProps = {
+  image?: Image
+}
+
+export default function EditPhoto({ image }: EditPhotoProps) {
   const t = useTranslations('EditProfilePage')
+  const tSnackbar = useTranslations('Snackbar')
+  const [modalOpen, setModalOpen] = useState(false)
+  const [previewSrc, setPreviewSrc] = useState<string | undefined>(undefined)
+  const { showSnackbar } = useSnackbar()
+
+  useEffect(() => {
+    return () => {
+      if (previewSrc) {
+        URL.revokeObjectURL(previewSrc)
+      }
+    }
+  }, [previewSrc])
+
+  const handlePhotoSelect = async (file: File) => {
+    const previewUrl = URL.createObjectURL(file)
+    setPreviewSrc(previewUrl)
+
+    const formData = new FormData()
+    formData.append('image', file)
+
+    await editPhoto({ image: file }).then((response) => {
+      if (response.success) {
+        showSnackbar(tSnackbar('photo-changed'))
+      } else {
+        showSnackbar(tSnackbar('wrong-photo'), 'error')
+      }
+    })
+  }
 
   return (
     <div className="flex flex-col gap-4 items-center">
-      <Photo size={128} />
-      <Button appearance="secondary">{t('change-photo')}</Button>
+      <Photo src={previewSrc ?? (image ? `http://localhost:8000/${image.url}` : '')} />
+      <Button appearance="secondary" onClick={() => setModalOpen(true)}>
+        {t('change-photo')}
+      </Button>
+      <PhotoPickerModal
+        isOpen={modalOpen}
+        onCloseAction={() => setModalOpen(false)}
+        onSelectAction={handlePhotoSelect}
+        title={t('change-photo')}
+      />
     </div>
   )
 }

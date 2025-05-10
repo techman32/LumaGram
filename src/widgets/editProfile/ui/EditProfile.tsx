@@ -8,8 +8,8 @@ export default async function EditProfile({ profile }: { profile: ProfileBody })
 
   return (
     <div className="border border-gray-200 dark:border-white/20 rounded-md p-8 max-w-md mx-auto my-4 flex flex-col gap-8">
-      <EditPhoto />
-      <EditUsernameForm username={profile.username} />
+      <EditPhoto image={image} />
+      <EditUsernameForm username={username} />
       <EditProfileForm profile={rest} />
     </div>
   )

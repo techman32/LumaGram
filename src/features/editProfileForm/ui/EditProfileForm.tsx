@@ -22,6 +22,7 @@ type EditProfileFormProps = {
 
 export default function EditProfileForm({ profile }: { profile: EditProfileFormProps }) {
   const t = useTranslations('EditProfilePage')
+  const tSnackbar = useTranslations('Snackbar')
   const getErrorMessage = useErrorMessages()
   const { showSnackbar } = useSnackbar()
 
@@ -47,9 +48,9 @@ export default function EditProfileForm({ profile }: { profile: EditProfileFormP
   const onSubmit = async (data: EditedProfileData) => {
     const response = await editProfile(data)
     if (response.success) {
-      showSnackbar('Изменения сохрнены', 'success')
+      showSnackbar(tSnackbar('changed'), 'success')
     } else {
-      showSnackbar('Произошла ошибка', 'error')
+      showSnackbar(tSnackbar('has-error'), 'error')
     }
   }
 
