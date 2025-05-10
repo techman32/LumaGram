@@ -12,7 +12,7 @@ export const setAuthCookies = async (auth: AuthBody) => {
   cookieStore.set({
     name: 'accessToken',
     value: auth.accessToken,
-    httpOnly: false,
+    httpOnly: true,
     sameSite: 'lax',
     path: '/',
   })
@@ -28,7 +28,7 @@ export const setAuthCookies = async (auth: AuthBody) => {
   cookieStore.set({
     name: 'username',
     value: auth.username,
-    httpOnly: false,
+    httpOnly: true,
     sameSite: 'lax',
     path: '/',
   })
@@ -39,7 +39,7 @@ export const updateUsernameCookie = async (username: string) => {
   cookieStore.set({
     name: 'username',
     value: username,
-    httpOnly: false,
+    httpOnly: true,
     sameSite: 'strict',
     path: '/',
   })

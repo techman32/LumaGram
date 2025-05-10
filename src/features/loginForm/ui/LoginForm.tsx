@@ -54,6 +54,7 @@ export default function LoginForm() {
       />
       <Input
         block
+        type="password"
         placeholder={t('enter-password')}
         label={t('password')}
         {...register('password')}

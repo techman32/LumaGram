@@ -1,10 +1,17 @@
+export type Image = {
+  mime: string
+  width: number
+  height: number
+  url: string
+}
+
 export type ProfileBody = {
   username: string
   name?: string
   description?: string
   activityCategory?: string
   isPublic: boolean
-  image?: string
+  image?: Image
   postsCount: number
   /** Количество подписок TODO: убрать опциональность */
   followerCount?: number
@@ -21,4 +28,8 @@ export type EditedProfileData = {
 
 export type EditedUsernameData = {
   username: string
+}
+
+export type EditedPhotoData = {
+  image: File
 }

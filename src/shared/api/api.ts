@@ -20,6 +20,8 @@ export const sendRequest = async <TData = any, TBody = unknown>(
     headers.Authorization = `Bearer ${token}`
   }
 
+  const isFormData = typeof FormData !== 'undefined' && body instanceof FormData
+
   const queryString = params
     ? '?' +
       new URLSearchParams(
@@ -30,14 +32,20 @@ export const sendRequest = async <TData = any, TBody = unknown>(
       ).toString()
     : ''
 
+  const resBody = body ? (isFormData ? body : JSON.stringify(body)) : undefined
+
   const response = await fetch(`http://localhost:8000/api/${url}${queryString}`, {
     method,
     headers: {
-      'Content-Type': 'application/json',
       'Accept': 'application/json',
       ...headers,
+      ...(isFormData
+        ? {}
+        : {
+            'Content-Type': 'application/json',
+          }),
     },
-    body: body ? JSON.stringify(body) : undefined,
+    body: resBody,
   })
 
   const json: ResponseBody<TData> = await response.json()
