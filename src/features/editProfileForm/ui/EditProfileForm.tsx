@@ -5,11 +5,11 @@ import { editProfileDefaultValues, editProfileSchema } from '@/features/editProf
 import Input from '@/shared/ui/Input'
 import Button from '@/shared/ui/Button'
 import { useTranslations } from 'next-intl'
-import { useErrorMessages } from '@/shared/lib/errorMessages'
+import { useErrorMessages } from '@/shared/common/lib/errorMessages'
 import Textarea from '@/shared/ui/Textarea'
 import Toggle from '@/shared/ui/Toggle'
 import { editProfile } from '@/shared/api/profile/api'
-import { EditedProfileData } from '@/shared/lib/types/profile'
+import { GeneralProfileEditDto } from '@/shared/common/types/profile'
 import { useEffect } from 'react'
 import { useSnackbar } from '@/shared/providers/SnackbarProvider'
 
@@ -45,7 +45,7 @@ export default function EditProfileForm({ profile }: { profile: EditProfileFormP
     }
   }, [profile, reset])
 
-  const onSubmit = async (data: EditedProfileData) => {
+  const onSubmit = async (data: GeneralProfileEditDto) => {
     const response = await editProfile(data)
     if (response.success) {
       showSnackbar(tSnackbar('changed'), 'success')

@@ -2,7 +2,7 @@
 import Input from '@/shared/ui/Input'
 import Button from '@/shared/ui/Button'
 import { useTranslations } from 'next-intl'
-import { useErrorMessages } from '@/shared/lib/errorMessages'
+import { useErrorMessages } from '@/shared/common/lib/errorMessages'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {

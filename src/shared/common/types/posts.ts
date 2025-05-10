@@ -1,6 +1,6 @@
-import { Image } from '@/shared/lib/types/image'
+import { Image } from '@/shared/common/types/image'
 
-export type FeedPostBody = {
+export type PostDto = {
   id: string
   image: string
   description: string
@@ -13,7 +13,7 @@ export type FeedPostBody = {
   }
 }
 
-export type CreatedPostData = {
+export type CreatedPostDto = {
   image: File
   description: string
 }

@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 import PhotoPickerModal from '@/features/photoPickerModal/ui/PhotoPickerModal'
 import { editPhoto } from '@/shared/api/profile/api'
 import { useSnackbar } from '@/shared/providers/SnackbarProvider'
-import { Image } from '@/shared/lib/types/profile'
+import { Image } from '@/shared/common/types/image'
 
 type EditPhotoProps = {
   image?: Image

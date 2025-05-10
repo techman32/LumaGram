@@ -1,11 +1,11 @@
 'use server'
-import { AuthBody, LoginData, RegisterData } from '@/shared/lib/types/auth'
+import { AuthResponse, LoginFormDto, RegisterFormDto } from '@/shared/common/types/auth'
 import { ApiError, sendRequest } from '@/shared/api/api'
-import { setAuthCookies } from '@/shared/lib/cookies'
+import { setAuthCookies } from '@/shared/common/lib/cookies'
 
-export const registerUser = async (data: RegisterData) => {
+export const registerUser = async (data: RegisterFormDto) => {
   try {
-    const response = await sendRequest<AuthBody, RegisterData>('auth/register', {
+    const response = await sendRequest<AuthResponse, RegisterFormDto>('auth/register', {
       method: 'POST',
       body: data,
     })
@@ -21,9 +21,9 @@ export const registerUser = async (data: RegisterData) => {
   }
 }
 
-export const loginUser = async (data: LoginData) => {
+export const loginUser = async (data: LoginFormDto) => {
   try {
-    const response = await sendRequest<AuthBody, LoginData>('auth/login', {
+    const response = await sendRequest<AuthResponse, LoginFormDto>('auth/login', {
       method: 'POST',
       body: data,
     })

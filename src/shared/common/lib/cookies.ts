@@ -1,12 +1,12 @@
 'use server'
 import { cookies } from 'next/headers'
-import { AuthBody } from '@/shared/lib/types/auth'
+import { AuthResponse } from '@/shared/common/types/auth'
 
 const getCookies = async () => {
   return await cookies()
 }
 
-export const setAuthCookies = async (auth: AuthBody) => {
+export const setAuthCookies = async (auth: AuthResponse) => {
   const cookieStore = await getCookies()
 
   cookieStore.set({

@@ -1,67 +1,17 @@
 'use server'
-import { cookies } from 'next/headers'
-import { ApiError, sendRequest } from '@/shared/api/api'
-import { CreatedPostData } from '@/shared/lib/types/posts'
+import { sendRequestWithToken } from '@/shared/api/api'
+import { CreatedPostDto } from '@/shared/common/types/posts'
 
-export const getPosts = async (username: string) => {
-  const cookieStore = await cookies()
-  const token = cookieStore.get('accessToken')?.value
+export const getProfilePosts = async (username: string) => {}
 
-  if (!token) {
-    return { success: false, error: [{ field: 'accessToken', message: 'No token provided' }] }
-  }
-
-  try {
-    // const response = await sendRequest<any>(`users/${username}/posts`, {
-    //   method: 'GET',
-    //   token: token,
-    // })
-    const response = await sendRequest('posts', {
-      method: 'GET',
-      token: token,
-    })
-
-    return { success: true, data: response }
-  } catch (error) {
-    if (error instanceof ApiError) {
-      return { success: false, error: error.fields }
-    }
-    return { success: false, error: [{ field: 'unknown', message: 'Unexpected error' }] }
-  }
-}
+export const getSubscriptionFeed = async () => {}
 
 export const getFeed = async () => {
-  const cookieStore = await cookies()
-  const token = cookieStore.get('accessToken')?.value
-
-  if (!token) {
-    return { success: false, error: [{ field: 'accessToken', message: 'No token provided' }] }
-  }
-
-  try {
-    // TODO: Изменить url на /feed вместо /posts
-    const response = await sendRequest('posts', {
-      method: 'GET',
-      token: token,
-    })
-
-    return { success: true, data: response }
-  } catch (error) {
-    if (error instanceof ApiError) {
-      return { success: false, error: error.fields }
-    }
-    return { success: false, error: [{ field: 'unknown', message: 'Unexpected error' }] }
-  }
+  // TODO: Изменить url на /feed вместо /posts
+  return await sendRequestWithToken('posts', { method: 'GET' })
 }
 
-export const createPost = async (data: CreatedPostData) => {
-  const cookieStore = await cookies()
-  const token = cookieStore.get('accessToken')?.value
-
-  if (!token) {
-    return { success: false, error: [{ field: 'accessToken', message: 'No token provided' }] }
-  }
-
+export const createPost = async (data: CreatedPostDto) => {
   const bytes = await data.image.arrayBuffer()
   const buffer = Buffer.from(bytes)
 
@@ -69,44 +19,18 @@ export const createPost = async (data: CreatedPostData) => {
   serverFormData.append('image', new File([buffer], data.image.name, { type: data.image.type }))
   serverFormData.append('description', data.description)
 
-  try {
-    const response = await sendRequest<CreatedPostData>(`posts`, {
-      method: 'POST',
-      token: token,
-      body: serverFormData,
-    })
-
-    console.log('response', response)
-    return { success: true, data: response }
-  } catch (error) {
-    if (error instanceof ApiError) {
-      return { success: false, error: error.fields }
-    }
-    return { success: false, error: [{ field: 'unknown', message: 'Unexpected error' }] }
-  }
+  return await sendRequestWithToken<CreatedPostDto>('posts', {
+    method: 'POST',
+    body: serverFormData,
+  })
 }
 
-export const toggleLikePost = async (postId: string) => {
-  const cookieStore = await cookies()
-  const token = cookieStore.get('accessToken')?.value
+export const deletePost = async (postId: string) => {}
 
-  if (!token) {
-    return { success: false, error: [{ field: 'accessToken', message: 'No token provided' }] }
-  }
-
-  try {
-    const response = await sendRequest(`posts/${postId}/likes`, {
-      method: 'PUT',
-      token: token,
-    })
-
-    return { success: true, data: response }
-  } catch (error) {
-    if (error instanceof ApiError) {
-      return { success: false, error: error.fields }
-    }
-    return { success: false, error: [{ field: 'unknown', message: 'Unexpected error' }] }
-  }
+export const toggleLikePost = async (postId: number) => {
+  return await sendRequestWithToken(`posts/${postId}/likes`, {
+    method: 'PUT',
+  })
 }
 
 export const getComments = async (postId: string) => {}

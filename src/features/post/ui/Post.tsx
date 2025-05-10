@@ -1,7 +1,7 @@
 import { Heart, MessageCircle } from 'lucide-react'
-import { FeedPostBody } from '@/shared/lib/types/posts'
+import { PostDto } from '@/shared/common/types/posts'
 
-export default function Post({ post, onClick }: { post: FeedPostBody; onClick?: () => void }) {
+export default function Post({ post, onClick }: { post: PostDto; onClick?: () => void }) {
   return (
     <div
       onClick={onClick}

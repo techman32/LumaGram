@@ -1,9 +1,9 @@
 import EditProfileForm from '@/features/editProfileForm/ui/EditProfileForm'
 import EditUsernameForm from '@/features/editUsernameForm/ui/EditUsernameForm'
 import EditPhoto from '@/features/editPhoto/ui/EditPhoto'
-import { ProfileBody } from '@/shared/lib/types/profile'
+import { ProfileDto } from '@/shared/common/types/profile'
 
-export default async function EditProfile({ profile }: { profile: ProfileBody }) {
+export default async function EditProfile({ profile }: { profile: ProfileDto }) {
   const { username, image, ...rest } = profile
 
   return (

@@ -1,11 +1,11 @@
 'use client'
 import { useState } from 'react'
-import { FeedPostBody } from '@/shared/lib/types/posts'
+import { PostDto } from '@/shared/common/types/posts'
 import Post from '@/features/post/ui/Post'
 import PostModal from '@/features/postModal/ui/PostModal'
 
-export default function Gallery({ posts }: { posts: FeedPostBody[] }) {
-  const [selectedPost, setSelectedPost] = useState<FeedPostBody | null>(null)
+export default function Gallery({ posts }: { posts: PostDto[] }) {
+  const [selectedPost, setSelectedPost] = useState<PostDto | null>(null)
 
   return (
     <>

@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { loginDefaultValues, loginSchema } from '@/features/loginForm/model/schema'
 import { LoginDto } from '@/shared/model/types/auth'
-import { useErrorMessages } from '@/shared/lib/errorMessages'
+import { useErrorMessages } from '@/shared/common/lib/errorMessages'
 import { loginUser } from '@/shared/api/auth/api'
 import { useRouter } from '@/i18n/navigation'
 

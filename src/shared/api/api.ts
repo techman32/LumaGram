@@ -1,13 +1,6 @@
-import { Field, ResponseBody, ResponseError } from '@/shared/api/response'
-
-type AllowedMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
-
-export interface SendRequestOptions<TBody = unknown> {
-  method?: AllowedMethod
-  body?: TBody
-  token?: string
-  params?: Record<string, string | number | boolean>
-}
+import { Field, ResponseBody, ResponseError } from '@/shared/common/types/response'
+import { AllowedMethod, SendRequestOptions } from '@/shared/common/types/request'
+import { cookies } from 'next/headers'
 
 export const sendRequest = async <TData = any, TBody = unknown>(
   url: string,
@@ -63,5 +56,42 @@ export class ApiError extends Error {
   constructor(error: ResponseError) {
     super(error.fields?.[0]?.message || 'Request failed')
     this.fields = error.fields
+  }
+}
+
+export async function sendRequestWithToken<TData = any, TBody = unknown>(
+  url: string,
+  options: {
+    method?: AllowedMethod
+    body?: TBody
+    params?: Record<string, string | number | boolean>
+  } = {},
+): Promise<ResponseBody<TData>> {
+  const cookieStore = await cookies()
+  const token = cookieStore.get('accessToken')?.value
+
+  if (!token) {
+    return { success: false, error: { fields: [{ field: 'accessToken', message: 'No token provided' }] } }
+  }
+
+  try {
+    const data = await sendRequest<TData, TBody>(url, {
+      ...options,
+      token,
+    })
+
+    return {
+      success: true,
+      data,
+    }
+  } catch (error) {
+    if (error instanceof ApiError) {
+      return { success: false, error: { fields: error.fields } }
+    }
+
+    return {
+      success: false,
+      error: { fields: [{ field: 'unknown', message: 'Unexpected error' }] },
+    }
   }
 }

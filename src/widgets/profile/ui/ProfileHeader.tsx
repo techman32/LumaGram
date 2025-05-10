@@ -1,11 +1,11 @@
-import { ProfileBody } from '@/shared/lib/types/profile'
+import { ProfileDto } from '@/shared/common/types/profile'
 import Photo from '@/shared/ui/Photo'
 import Button from '@/shared/ui/Button'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
 import ProfileCounts from '@/features/profileInfo/ui/ProfileCounts'
 
-export default async function ProfileHeader({ profile }: { profile: ProfileBody }) {
+export default async function ProfileHeader({ profile }: { profile: ProfileDto }) {
   const cookieStore = await cookies()
   const usernameCookie = cookieStore.get('username')?.value
 
