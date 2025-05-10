@@ -1,6 +1,6 @@
 'use server'
 import { AuthResponse, LoginFormDto, RegisterFormDto } from '@/shared/common/types/auth'
-import { ApiError, sendRequest } from '@/shared/api/api'
+import { ApiError, sendRequest, sendRequestWithToken } from '@/shared/api/api'
 import { setAuthCookies } from '@/shared/common/lib/cookies'
 
 export const registerUser = async (data: RegisterFormDto) => {
@@ -37,4 +37,8 @@ export const loginUser = async (data: LoginFormDto) => {
     }
     return { success: false, error: [{ field: 'unknown', message: 'Unexpected error' }] }
   }
+}
+
+export const getCurrentUsername = async () => {
+  return await sendRequestWithToken<{ username: string }>('users/check', { method: 'GET' })
 }

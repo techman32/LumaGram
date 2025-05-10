@@ -1,11 +1,11 @@
 'use client'
-import Input from '@/shared/ui/Input'
 import { ChangeEvent, useState, useEffect, useCallback, ReactNode } from 'react'
-import Button from '@/shared/ui/Button'
-import { CloudUpload } from 'lucide-react'
 import Cropper, { Area } from 'react-easy-crop'
+import { getCroppedImage } from '@/shared/common/lib/getCroppedImage'
+import PhotoPickerFooter from '@/features/photoPickerModal/ui/PhotoPickerFooter'
+import PhotoPickerDropzone from '@/features/photoPickerModal/ui/PhotoPickerDropzone'
 
-interface PhotoPickerModalProps {
+type PhotoPickerModalProps = {
   isOpen: boolean
   onCloseAction: () => void
   onSelectAction: (file: File) => void
@@ -22,7 +22,6 @@ export default function PhotoPickerModal({
 }: PhotoPickerModalProps) {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [file, setFile] = useState<File | null>(null)
-
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null)
@@ -62,49 +61,9 @@ export default function PhotoPickerModal({
     setCroppedAreaPixels(croppedArea)
   }, [])
 
-  const getCroppedImage = async () => {
-    if (!file || !previewUrl || !croppedAreaPixels) return
-
-    const createImage = (url: string): Promise<HTMLImageElement> =>
-      new Promise((resolve, reject) => {
-        const image = new Image()
-        image.src = url
-        image.onload = () => resolve(image)
-        image.onerror = reject
-      })
-
-    const image = await createImage(previewUrl)
-    const canvas = document.createElement('canvas')
-    const ctx = canvas.getContext('2d')
-
-    if (!ctx) return
-
-    canvas.width = croppedAreaPixels.width
-    canvas.height = croppedAreaPixels.height
-
-    ctx.drawImage(
-      image,
-      croppedAreaPixels.x,
-      croppedAreaPixels.y,
-      croppedAreaPixels.width,
-      croppedAreaPixels.height,
-      0,
-      0,
-      croppedAreaPixels.width,
-      croppedAreaPixels.height,
-    )
-
-    return new Promise<File>((resolve) => {
-      canvas.toBlob((blob) => {
-        if (!blob) return
-        const croppedFile = new File([blob], file.name, { type: file.type })
-        resolve(croppedFile)
-      }, file.type)
-    })
-  }
-
   const handleConfirm = async () => {
-    const cropped = await getCroppedImage()
+    if (!file || !previewUrl || !croppedAreaPixels) return
+    const cropped = await getCroppedImage(previewUrl, croppedAreaPixels, file)
     if (cropped) {
       onSelectAction(cropped)
       onCloseAction()
@@ -116,7 +75,10 @@ export default function PhotoPickerModal({
   return (
     <div
       className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex justify-center items-center"
-      onClick={onCloseAction}
+      onClick={() => {
+        if (!previewUrl) onCloseAction()
+        else return
+      }}
     >
       <div
         className="bg-white dark:bg-black/20 dark:border dark:border-white/20 p-6 rounded-lg shadow-md w-full max-w-sm flex flex-col gap-4"
@@ -136,41 +98,18 @@ export default function PhotoPickerModal({
               onCropComplete={onCropComplete}
             />
           ) : (
-            <label
-              htmlFor="dropzone-file"
-              className="flex flex-col items-center justify-center w-full h-full border-2 border-dashed border-gray-300 dark:border-white/20 cursor-pointer transition-colors duration-300"
-            >
-              <CloudUpload size={32} className="text-gray-500 dark:text-white/80" />
-              <p className="mb-2 text-sm text-gray-500 dark:text-white/80">
-                <span className="font-semibold">Нажмите или перетащите</span> для загрузки
-              </p>
-              <p className="text-xs text-gray-500 dark:text-white/80">PNG, JPG, GIF (макс. 800x400)</p>
-              <Input id="dropzone-file" type="file" hidden onChange={handleFileChange} />
-            </label>
+            <PhotoPickerDropzone onChangeAction={handleFileChange} />
           )}
         </div>
 
         {previewUrl && (
-          <>
-            <input
-              type="range"
-              min={1}
-              max={3}
-              step={0.1}
-              value={zoom}
-              onChange={(e) => setZoom(Number(e.target.value))}
-              className="w-full"
-            />
-            {children}
-            <div className="flex justify-end gap-2">
-              <Button appearance="secondary" onClick={onCloseAction}>
-                Отмена
-              </Button>
-              <Button appearance="primary" onClick={handleConfirm}>
-                Подтвердить
-              </Button>
-            </div>
-          </>
+          <PhotoPickerFooter
+            zoom={zoom}
+            setZoom={setZoom}
+            onCloseAction={onCloseAction}
+            onSubmitAction={handleConfirm}
+            children={children}
+          />
         )}
       </div>
     </div>

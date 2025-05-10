@@ -36,7 +36,12 @@
     "closed-profile": "Private account",
     "change-photo": "Change photo",
     "apply": "Apply",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "photo-changed": "Photo has been updated",
+    "wrong-photo": "Failed to refresh the photo, reload the page and try again",
+    "has-error": "An error occurred",
+    "username-changed": "Username has been changed",
+    "changed": "Changes have been saved"
   },
   "Profile": {
     "posts-count": "{postsCount} posts",
@@ -59,13 +64,6 @@
     "category-long": "Category name is too long",
     "name-long": "Name is too long",
     "description-long": "Bio is too long"
-  },
-  "Snackbar": {
-    "has-error": "An error occurred",
-    "username-changed": "Username has been changed",
-    "wrong-photo": "Failed to refresh the photo, reload the page and try again",
-    "changed": "Changes have been saved",
-    "photo-changed": "Photo has been updated"
   },
   "Other": {
     "return-button": "Back"

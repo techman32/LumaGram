@@ -14,7 +14,6 @@ type EditPhotoProps = {
 
 export default function EditPhoto({ image }: EditPhotoProps) {
   const t = useTranslations('EditProfilePage')
-  const tSnackbar = useTranslations('Snackbar')
   const [modalOpen, setModalOpen] = useState(false)
   const [previewSrc, setPreviewSrc] = useState<string | undefined>(undefined)
   const { showSnackbar } = useSnackbar()
@@ -31,14 +30,11 @@ export default function EditPhoto({ image }: EditPhotoProps) {
     const previewUrl = URL.createObjectURL(file)
     setPreviewSrc(previewUrl)
 
-    const formData = new FormData()
-    formData.append('image', file)
-
     await editPhoto({ image: file }).then((response) => {
       if (response.success) {
-        showSnackbar(tSnackbar('photo-changed'))
+        showSnackbar(t('photo-changed'))
       } else {
-        showSnackbar(tSnackbar('wrong-photo'), 'error')
+        showSnackbar(t('wrong-photo'), 'error')
       }
     })
   }

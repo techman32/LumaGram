@@ -1,29 +1,19 @@
+import PageLayout from '@/shared/ui/PageLayout'
 import EditProfile from '@/widgets/editProfile/ui/EditProfile'
-import ReturnButton from '@/features/returnButton/ui/ReturnButton'
-import { cookies } from 'next/headers'
 import { notFound } from 'next/navigation'
 import { getProfile } from '@/shared/api/profile/api'
 
-export default async function EditProfilePage() {
-  const cookieStore = await cookies()
-  const cookieUsername = cookieStore.get('username')?.value
-
-  if (!cookieUsername) {
-    notFound()
-  }
-
-  const { data } = await getProfile(cookieUsername)
+export default async function EditProfilePage({ params }: { params: Promise<{ username: string }> }) {
+  const { username } = await params
+  const { data } = await getProfile(username)
 
   if (!data) {
     notFound()
   }
 
   return (
-    <div className="relative h-full overflow-scroll container mx-auto px-4">
-      <div className="fixed top-16">
-        <ReturnButton backUrl={`/${cookieUsername}`} />
-      </div>
+    <PageLayout>
       <EditProfile profile={data} />
-    </div>
+    </PageLayout>
   )
 }

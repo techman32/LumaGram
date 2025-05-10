@@ -22,15 +22,13 @@ type EditProfileFormProps = {
 
 export default function EditProfileForm({ profile }: { profile: EditProfileFormProps }) {
   const t = useTranslations('EditProfilePage')
-  const tSnackbar = useTranslations('Snackbar')
   const getErrorMessage = useErrorMessages()
   const { showSnackbar } = useSnackbar()
 
   const {
     register,
-    formState: { errors, isValid, isDirty },
+    formState: { errors },
     handleSubmit,
-    setError,
     control,
     reset,
   } = useForm({
@@ -46,12 +44,15 @@ export default function EditProfileForm({ profile }: { profile: EditProfileFormP
   }, [profile, reset])
 
   const onSubmit = async (data: GeneralProfileEditDto) => {
-    const response = await editProfile(data)
-    if (response.success) {
-      showSnackbar(tSnackbar('changed'), 'success')
-    } else {
-      showSnackbar(tSnackbar('has-error'), 'error')
-    }
+    editProfile(data).then((res) => {
+      if (res.success) {
+        showSnackbar(t('changed'))
+      } else {
+        res.error?.fields?.map((field) => {
+          showSnackbar(getErrorMessage(field.message), 'error')
+        })
+      }
+    })
   }
 
   return (
