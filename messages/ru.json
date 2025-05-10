@@ -39,9 +39,9 @@
     "cancel": "Отмена"
   },
   "Profile": {
-    "posts-count": "{postsCount} постов",
-    "follower-count": "{followerCount} подписок",
-    "following-count": "{followingCount} подписчиков"
+    "posts-count": "{postsCount, plural, one {# пост} few {# поста} many {# постов} other {# поста}}",
+    "follower-count": "{followerCount, plural, one {# подписка} few {# подписка} many {# подписок} other {# подписка}}",
+    "following-count": "{followingCount, plural, one {# подписчик} few {# подписчика} many {# подписчиков} other {# подписчика}}"
   },
   "Errors": {
     "username-small": "Имя пользователя слишком короткое",

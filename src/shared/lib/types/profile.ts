@@ -1,9 +1,4 @@
-export type Image = {
-  mime: string
-  width: number
-  height: number
-  url: string
-}
+import { Image } from '@/shared/lib/types/image'
 
 export type ProfileBody = {
   username: string

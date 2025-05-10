@@ -3,6 +3,7 @@ import Button from '@/shared/ui/Button'
 import { BrickWall, Heart, PlusSquare, UserCircle } from 'lucide-react'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
+import UploadPost from '@/features/uploadPost/ui/UploadPost'
 
 export default async function HeaderNavigation() {
   const cookieStore = await cookies()
@@ -14,11 +15,7 @@ export default async function HeaderNavigation() {
       <Button appearance="scalable">
         <Heart size={20} />
       </Button>
-      {/** Иконка добавления поста. Открывает поп-ап с загрузкой фотографии */}
-      <Button appearance="scalable">
-        <PlusSquare size={20} />
-      </Button>
-      {/** Иконка профиля пользователя. Ведет на страницу /profile (<username>) */}
+      <UploadPost />
       {username && (
         <Link href={`/${username}`}>
           <Button appearance="scalable">
@@ -26,10 +23,11 @@ export default async function HeaderNavigation() {
           </Button>
         </Link>
       )}
-      {/** Иконка ленты (стены постов). Ведет на страницу /feed */}
-      <Button appearance="scalable">
-        <BrickWall size={20} />
-      </Button>
+      <Link href={`/feed`}>
+        <Button appearance="scalable">
+          <BrickWall size={20} />
+        </Button>
+      </Link>
     </Navigation>
   )
 }

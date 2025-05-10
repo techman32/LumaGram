@@ -1,6 +1,6 @@
 'use client'
 import Input from '@/shared/ui/Input'
-import { ChangeEvent, useState, useEffect, useCallback } from 'react'
+import { ChangeEvent, useState, useEffect, useCallback, ReactNode } from 'react'
 import Button from '@/shared/ui/Button'
 import { CloudUpload } from 'lucide-react'
 import Cropper, { Area } from 'react-easy-crop'
@@ -10,9 +10,16 @@ interface PhotoPickerModalProps {
   onCloseAction: () => void
   onSelectAction: (file: File) => void
   title?: string
+  children?: ReactNode
 }
 
-export default function PhotoPickerModal({ isOpen, onCloseAction, onSelectAction, title }: PhotoPickerModalProps) {
+export default function PhotoPickerModal({
+  isOpen,
+  onCloseAction,
+  onSelectAction,
+  title,
+  children,
+}: PhotoPickerModalProps) {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [file, setFile] = useState<File | null>(null)
 
@@ -112,12 +119,12 @@ export default function PhotoPickerModal({ isOpen, onCloseAction, onSelectAction
       onClick={onCloseAction}
     >
       <div
-        className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm flex flex-col gap-4"
+        className="bg-white dark:bg-black/20 dark:border dark:border-white/20 p-6 rounded-lg shadow-md w-full max-w-sm flex flex-col gap-4"
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-lg font-semibold">{title || 'Выберите фотографию'}</h2>
 
-        <div className="relative w-full aspect-square rounded-md overflow-hidden bg-gray-100">
+        <div className="relative w-full aspect-square rounded-md overflow-hidden bg-gray-100 dark:bg-black/40">
           {previewUrl ? (
             <Cropper
               image={previewUrl}
@@ -131,13 +138,13 @@ export default function PhotoPickerModal({ isOpen, onCloseAction, onSelectAction
           ) : (
             <label
               htmlFor="dropzone-file"
-              className="flex flex-col items-center justify-center w-full h-full border-2 border-dashed border-gray-300 cursor-pointer transition-colors duration-300"
+              className="flex flex-col items-center justify-center w-full h-full border-2 border-dashed border-gray-300 dark:border-white/20 cursor-pointer transition-colors duration-300"
             >
-              <CloudUpload size={32} className="text-gray-500" />
-              <p className="mb-2 text-sm text-gray-500">
+              <CloudUpload size={32} className="text-gray-500 dark:text-white/80" />
+              <p className="mb-2 text-sm text-gray-500 dark:text-white/80">
                 <span className="font-semibold">Нажмите или перетащите</span> для загрузки
               </p>
-              <p className="text-xs text-gray-500">PNG, JPG, GIF (макс. 800x400)</p>
+              <p className="text-xs text-gray-500 dark:text-white/80">PNG, JPG, GIF (макс. 800x400)</p>
               <Input id="dropzone-file" type="file" hidden onChange={handleFileChange} />
             </label>
           )}
@@ -154,6 +161,7 @@ export default function PhotoPickerModal({ isOpen, onCloseAction, onSelectAction
               onChange={(e) => setZoom(Number(e.target.value))}
               className="w-full"
             />
+            {children}
             <div className="flex justify-end gap-2">
               <Button appearance="secondary" onClick={onCloseAction}>
                 Отмена
