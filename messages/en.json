@@ -46,7 +46,8 @@
   "Profile": {
     "posts-count": "{postsCount} posts",
     "follower-count": "{followerCount} followers",
-    "following-count": "{followingCount} following"
+    "following-count": "{followingCount} following",
+    "edit-button": "Edit profile"
   },
   "Errors": {
     "username-small": "Username is too short",

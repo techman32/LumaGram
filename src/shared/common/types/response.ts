@@ -3,12 +3,20 @@ export type Field = {
   message: string
 }
 
-export type ResponseError = {
+export type ErrorFields = {
   fields?: Field[]
 }
 
-export type ResponseBody<TBody = any> = {
-  success: boolean
-  data?: TBody
-  error?: ResponseError
+export type SuccessResponse<T> = {
+  success: true
+  data: T
+  error?: never
 }
+
+export type ErrorResponse = {
+  success: false
+  data?: never
+  error: ErrorFields
+}
+
+export type ResponseBody<T = any> = SuccessResponse<T> | ErrorResponse

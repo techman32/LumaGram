@@ -1,13 +1,14 @@
 import { ProfileDto } from '@/shared/common/types/profile'
 import Photo from '@/shared/ui/Photo'
 import Button from '@/shared/ui/Button'
-import { cookies } from 'next/headers'
 import Link from 'next/link'
 import ProfileCounts from '@/features/profileInfo/ui/ProfileCounts'
+import { getCurrentUsername } from '@/shared/api/auth/api'
+import { getTranslations } from 'next-intl/server'
 
 export default async function ProfileHeader({ profile }: { profile: ProfileDto }) {
-  const cookieStore = await cookies()
-  const usernameCookie = cookieStore.get('username')?.value
+  const t = await getTranslations('Profile')
+  const { success, data } = await getCurrentUsername()
 
   return (
     <div className="mt-4 pb-4 gap-4 flex flex-col items-center border-b border-gray-200 dark:border-white/20 sm:items-start sm:flex-row sm:gap-8 sm:mt-8 sm:pb-8">
@@ -15,10 +16,10 @@ export default async function ProfileHeader({ profile }: { profile: ProfileDto }
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-4">
           <h2 className="text-xl font-bold">{profile.username}</h2>
-          {usernameCookie === profile.username && (
-            <Link href={`/${usernameCookie}/edit`}>
+          {success && data.username === profile.username && (
+            <Link href={`/${profile.username}/edit`}>
               <Button appearance="secondary" size="small">
-                Редактировать
+                {t('edit-button')}
               </Button>
             </Link>
           )}

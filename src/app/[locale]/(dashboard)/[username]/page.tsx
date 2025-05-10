@@ -1,17 +1,18 @@
 import { getProfile } from '@/shared/api/profile/api'
 import ProfileHeader from '@/widgets/profile/ui/ProfileHeader'
+import PageLayout from '@/shared/ui/PageLayout'
 
 export default async function ProfilePage({ params }: { params: Promise<{ username: string }> }) {
   const { username } = await params
   const { data } = await getProfile(username)
 
   return (
-    <div className="h-full overflow-scroll container mx-auto px-4">
+    <PageLayout>
       {data ? (
         <ProfileHeader profile={data} />
       ) : (
         <div className="h-full flex flex-col justify-center items-center">Пользователь не найден</div>
       )}
-    </div>
+    </PageLayout>
   )
 }
