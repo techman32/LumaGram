@@ -58,6 +58,7 @@ export default function RegisterForm() {
       />
       <Input
         block
+        type="password"
         placeholder={t('enter-password')}
         label={t('password')}
         {...register('password')}
@@ -65,6 +66,7 @@ export default function RegisterForm() {
       />
       <Input
         block
+        type="password"
         placeholder={t('repeat-password')}
         label={t('repeated-password')}
         {...register('repeatedPassword')}
