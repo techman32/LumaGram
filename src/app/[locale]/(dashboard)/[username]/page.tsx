@@ -1,7 +1,6 @@
 import { getProfile } from '@/shared/api/profile/api'
 import ProfileHeader from '@/widgets/profile/ui/ProfileHeader'
 import PageLayout from '@/shared/ui/PageLayout'
-import Gallery from '@/widgets/posts/ui/Gallery'
 import ProfilePosts from '@/features/profilePosts/ui/ProfilePosts'
 
 export default async function ProfilePage({ params }: { params: Promise<{ username: string }> }) {
