@@ -1,6 +1,8 @@
 import { getProfile } from '@/shared/api/profile/api'
 import ProfileHeader from '@/widgets/profile/ui/ProfileHeader'
 import PageLayout from '@/shared/ui/PageLayout'
+import Gallery from '@/widgets/posts/ui/Gallery'
+import ProfilePosts from '@/features/profilePosts/ui/ProfilePosts'
 
 export default async function ProfilePage({ params }: { params: Promise<{ username: string }> }) {
   const { username } = await params
@@ -9,7 +11,10 @@ export default async function ProfilePage({ params }: { params: Promise<{ userna
   return (
     <PageLayout>
       {data ? (
-        <ProfileHeader profile={data} />
+        <>
+          <ProfileHeader profile={data} />
+          <ProfilePosts username={username} />
+        </>
       ) : (
         <div className="h-full flex flex-col justify-center items-center">Пользователь не найден</div>
       )}

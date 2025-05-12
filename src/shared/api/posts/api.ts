@@ -2,13 +2,14 @@
 import { sendRequestWithToken } from '@/shared/api/api'
 import { CreatedPostDto } from '@/shared/common/types/posts'
 
-export const getProfilePosts = async (username: string) => {}
+export const getProfilePosts = async (username: string) => {
+  return await sendRequestWithToken(`users/${username}/posts`, { method: 'GET' })
+}
 
 export const getSubscriptionFeed = async () => {}
 
 export const getFeed = async () => {
-  // TODO: Изменить url на /feed вместо /posts
-  return await sendRequestWithToken('posts', { method: 'GET' })
+  return await sendRequestWithToken('feed', { method: 'GET' })
 }
 
 export const createPost = async (data: CreatedPostDto) => {
@@ -27,7 +28,7 @@ export const createPost = async (data: CreatedPostDto) => {
 
 export const deletePost = async (postId: string) => {}
 
-export const toggleLikePost = async (postId: number) => {
+export const toggleLikePost = async (postId: string) => {
   return await sendRequestWithToken(`posts/${postId}/likes`, {
     method: 'PUT',
   })

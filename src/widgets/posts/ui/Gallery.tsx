@@ -6,6 +6,7 @@ import PostModal from '@/features/postModal/ui/PostModal'
 
 export default function Gallery({ posts }: { posts: PostDto[] }) {
   const [selectedPost, setSelectedPost] = useState<PostDto | null>(null)
+  console.log(selectedPost)
 
   return (
     <>
@@ -17,12 +18,8 @@ export default function Gallery({ posts }: { posts: PostDto[] }) {
 
       {selectedPost && (
         <PostModal
-          image={`http://localhost:8000/${selectedPost.image}`}
-          description={selectedPost.description}
-          likeCount={selectedPost.likeCount}
-          postId={selectedPost.id}
-          likedByCurrentUser={false}
-          commentCount={selectedPost.commentCount}
+          post={selectedPost}
+          likedByCurrentUser={selectedPost.isLiked}
           onCloseAction={() => setSelectedPost(null)}
         />
       )}

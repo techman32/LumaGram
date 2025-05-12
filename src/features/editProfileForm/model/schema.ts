@@ -1,9 +1,9 @@
 import { z } from 'zod'
 
 const editProfileSchema = z.object({
-  name: z.string().max(32, 'name-long'),
-  description: z.string().max(120, 'description-long'),
-  activityCategory: z.string().max(40, 'category-long'),
+  name: z.string().max(32, 'name-long').optional(),
+  description: z.string().max(120, 'description-long').optional(),
+  activityCategory: z.string().max(40, 'category-long').optional(),
   isPublic: z.boolean().default(true),
 })
 
