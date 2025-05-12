@@ -9,7 +9,7 @@ type PostUserInfoProps = {
 export default function PostUserInfo({ username, image }: PostUserInfoProps) {
   return (
     <div className="flex gap-4 items-center">
-      <Photo src={`http://localhost:8000/${image.url}`} size={32} />
+      <Photo src={image ? `http://localhost:8000/${image.url}` : ''} size={32} />
       <p>{username}</p>
     </div>
   )

@@ -1,7 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 import PostActions from '@/features/postActions/ui/PostActions'
-import Comment from '@/features/comment/ui/Comment'
+import Comments from '@/features/comments/ui/Comments'
 import { PostDto } from '@/shared/common/types/posts'
 import PostUserInfo from '@/features/post/ui/PostUserInfo'
 
@@ -29,7 +29,7 @@ export default function PostModal({
       onClick={onCloseAction}
     >
       <div
-        className="bg-white dark:bg-black/20 dark:border dark:border-white/20 p-6 rounded-lg shadow-md w-full max-w-[64rem] flex gap-4"
+        className="bg-white dark:bg-black dark:border dark:border-white/20 p-6 rounded-lg shadow-md w-full max-w-[64rem] flex gap-4"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col gap-4 w-full max-w-[32rem]">
@@ -44,7 +44,7 @@ export default function PostModal({
         </div>
         <div className="w-full flex flex-col gap-4">
           <PostUserInfo username={post.user.username} image={post.user.image} />
-          <Comment />
+          <Comments postId={post.id} />
         </div>
       </div>
     </div>

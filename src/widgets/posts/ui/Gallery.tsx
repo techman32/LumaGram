@@ -6,7 +6,6 @@ import PostModal from '@/features/postModal/ui/PostModal'
 
 export default function Gallery({ posts }: { posts: PostDto[] }) {
   const [selectedPost, setSelectedPost] = useState<PostDto | null>(null)
-  console.log(selectedPost)
 
   return (
     <>

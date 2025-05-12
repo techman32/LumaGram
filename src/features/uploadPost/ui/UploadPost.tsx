@@ -31,7 +31,6 @@ export default function UploadPost() {
     } else {
       console.log('Ошибка при создании поста')
     }
-    console.log(response)
   }
 
   return (
