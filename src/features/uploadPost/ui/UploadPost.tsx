@@ -1,11 +1,9 @@
 'use client'
-
 import PhotoPickerModal from '@/features/photoPickerModal/ui/PhotoPickerModal'
 import Button from '@/shared/ui/Button'
 import { PlusSquare } from 'lucide-react'
 import { useForm, Controller } from 'react-hook-form'
 import { useState } from 'react'
-import { editPhoto } from '@/shared/api/profile/api'
 import Textarea from '@/shared/ui/Textarea'
 import { createPost } from '@/shared/api/posts/api'
 
