@@ -1,4 +1,4 @@
-import { Field, ResponseBody, ResponseError } from '@/shared/common/types/response'
+import { Field, ResponseBody, ErrorFields } from '@/shared/common/types/response'
 import { AllowedMethod, SendRequestOptions } from '@/shared/common/types/request'
 import { cookies } from 'next/headers'
 
@@ -53,7 +53,7 @@ export const sendRequest = async <TData = any, TBody = unknown>(
 export class ApiError extends Error {
   fields?: Field[]
 
-  constructor(error: ResponseError) {
+  constructor(error: ErrorFields) {
     super(error.fields?.[0]?.message || 'Request failed')
     this.fields = error.fields
   }
