@@ -4,6 +4,9 @@ import PostActions from '@/features/postActions/ui/PostActions'
 import Comments from '@/features/comments/ui/Comments'
 import { PostDto } from '@/shared/common/types/posts'
 import PostUserInfo from '@/features/post/ui/PostUserInfo'
+import Button from '@/shared/ui/Button'
+import { Trash2 } from 'lucide-react'
+import { deleteProfilePost } from '@/shared/api/posts/api'
 
 export default function PostModal({
   post,
@@ -22,6 +25,14 @@ export default function PostModal({
     document.addEventListener('keydown', handleKey)
     return () => document.removeEventListener('keydown', handleKey)
   }, [onCloseAction])
+
+  const deletePost = () => {
+    deleteProfilePost(post.id).then((res) => {
+      if (res.success) {
+        onCloseAction()
+      }
+    })
+  }
 
   return (
     <div
@@ -43,7 +54,12 @@ export default function PostModal({
           {post.description && <p className="text-sm text-gray-600 dark:text-white/80">{post.description}</p>}
         </div>
         <div className="w-full flex flex-col gap-4">
-          <PostUserInfo username={post.user.username} image={post.user.image} />
+          <div className="flex justify-between items-center">
+            <PostUserInfo username={post.user.username} image={post.user.image} />
+            <Button onClick={deletePost}>
+              <Trash2 size={20} className="text-red-500" />
+            </Button>
+          </div>
           <Comments postId={post.id} />
         </div>
       </div>

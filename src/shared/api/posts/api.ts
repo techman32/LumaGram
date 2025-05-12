@@ -7,6 +7,12 @@ export const getProfilePosts = async (username: string) => {
   return await sendRequestWithToken(`users/${username}/posts`, { method: 'GET' })
 }
 
+export const deleteProfilePost = async (postId: string) => {
+  return await sendRequestWithToken(`posts/${postId}`, {
+    method: 'DELETE',
+  })
+}
+
 export const getSubscriptionFeed = async () => {}
 
 export const getFeed = async () => {
