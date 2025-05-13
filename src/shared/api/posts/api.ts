@@ -1,10 +1,10 @@
 'use server'
 import { sendRequestWithToken } from '@/shared/api/api'
 import { CreatedPostDto } from '@/shared/common/types/posts'
-import { CommentDto } from '@/shared/common/types/comment'
+import { CommentDto, CommentsDto, CreatedCommentDto } from '@/shared/common/types/comment'
 
-export const getProfilePosts = async (username: string) => {
-  return await sendRequestWithToken(`users/${username}/posts`, { method: 'GET' })
+export const getProfilePosts = async (username: string, limit: number = 12, offset: number = 0) => {
+  return await sendRequestWithToken(`users/${username}/posts`, { method: 'GET', params: { limit, offset } })
 }
 
 export const deleteProfilePost = async (postId: string) => {
@@ -42,12 +42,12 @@ export const toggleLikePost = async (postId: string) => {
 }
 
 export const getComments = async (postId: string) => {
-  return await sendRequestWithToken(`posts/${postId}/comments`, {
+  return await sendRequestWithToken<CommentsDto>(`posts/${postId}/comments`, {
     method: 'GET',
   })
 }
 
-export const createComment = async (postId: string, data: CommentDto) => {
+export const createComment = async (postId: string, data: CreatedCommentDto) => {
   return await sendRequestWithToken(`posts/${postId}/comments`, {
     method: 'POST',
     body: data,

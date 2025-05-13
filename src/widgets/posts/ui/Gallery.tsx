@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { PostDto } from '@/shared/common/types/posts'
 import Post from '@/features/post/ui/Post'
 import PostModal from '@/features/postModal/ui/PostModal'
+import Button from '@/shared/ui/Button'
 
 export default function Gallery({ posts }: { posts: PostDto[] }) {
   const [selectedPost, setSelectedPost] = useState<PostDto | null>(null)
@@ -14,7 +15,9 @@ export default function Gallery({ posts }: { posts: PostDto[] }) {
           <Post key={post.id} post={post} onClick={() => setSelectedPost(post)} />
         ))}
       </div>
-
+      <div className="flex justify-center pb-4">
+        <Button appearance="secondary">Загрузить еще</Button>
+      </div>
       {selectedPost && (
         <PostModal
           post={selectedPost}
