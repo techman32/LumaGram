@@ -8,10 +8,16 @@ interface ProfilePostsState {
   removePost: (id: string) => void
   updatePost: (updated: PostDto) => void
   toggleLike: (id: string, isLiked: boolean) => void
+  appendPosts: (newPosts: PostDto[]) => void
 }
 
 export const useProfilePostsStore = create<ProfilePostsState>((set) => ({
   posts: [],
+  appendPosts: (newPosts) => {
+    set((state) => ({
+      posts: [...state.posts, ...newPosts],
+    }))
+  },
   setPosts: (posts) => set({ posts }),
   addPost: (post) => set((state) => ({ posts: [post, ...state.posts] })),
   removePost: (id) =>

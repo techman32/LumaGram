@@ -3,7 +3,7 @@ import { sendRequestWithToken } from '@/shared/api/api'
 import { CreatedPostDto, PostDto } from '@/shared/common/types/posts'
 import { CommentsDto, CreatedCommentDto } from '@/shared/common/types/comment'
 
-export const getProfilePosts = async (username: string, limit: number = 12, offset: number = 0) => {
+export const getProfilePosts = async (username: string, limit: number = 9, offset: number = 0) => {
   return await sendRequestWithToken(`users/${username}/posts`, { method: 'GET', params: { limit, offset } })
 }
 
@@ -41,9 +41,10 @@ export const toggleLikePost = async (postId: string) => {
   })
 }
 
-export const getComments = async (postId: string) => {
+export const getComments = async (postId: string, limit: number = 10, offset: number = 0) => {
   return await sendRequestWithToken<CommentsDto>(`posts/${postId}/comments`, {
     method: 'GET',
+    params: { limit, offset },
   })
 }
 
