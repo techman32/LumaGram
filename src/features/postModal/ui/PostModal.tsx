@@ -45,13 +45,15 @@ export default function PostModal({ post, onCloseAction }: { post: PostDto; onCl
           />
         </div>
 
-        <div className="w-full md:max-w-md flex flex-col aspect-square justify-between overflow-y-auto">
+        <div className="w-auto md:w-full md:max-w-md flex flex-col md:aspect-square justify-between overflow-y-auto">
           <PostUserInfo username={post.user.username} image={post.user.image} />
-          <div className="flex-grow overflow-y-auto pr-1">
+          <div className="flex-grow overflow-y-auto pr-1 hidden md:block">
             <Comments postId={post.id} />
           </div>
           <PostActions postId={post.id} initialCommentCount={post.commentCount} />
-          <CommentSender postId={post.id} />
+          <div className="hidden md:block">
+            <CommentSender postId={post.id} />
+          </div>
         </div>
       </div>
     </div>
