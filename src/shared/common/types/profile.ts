@@ -1,14 +1,17 @@
 import { Image } from '@/shared/common/types/image'
 
+export type FollowingStatus = 'notFollowed' | 'followed' | null
+
 export type ProfileDto = {
   username: string
   name?: string
   description?: string
   activityCategory?: string
+  followingStatus: FollowingStatus
   isPublic: boolean
   image?: Image
   postsCount: number
-  followerCount: number
+  followersCount: number
   followingCount: number
 }
 

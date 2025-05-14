@@ -42,6 +42,7 @@ export const sendRequest = async <TData = any, TBody = unknown>(
   })
 
   const json: ResponseBody<TData> = await response.json()
+  console.log(json)
 
   if (!response.ok || !json.success) {
     throw new ApiError(json.error ?? { fields: [{ field: 'unknown', message: 'Something went wrong' }] })

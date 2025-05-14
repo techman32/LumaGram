@@ -35,3 +35,11 @@ export const editPhoto = async (data: PhotoProfileEditDto) => {
     body: serverFormData,
   })
 }
+
+export const followProfile = async (username: string) => {
+  return await sendRequestWithToken(`users/${username}/follow`, { method: 'POST' })
+}
+
+export const unfollowProfile = async (username: string) => {
+  return await sendRequestWithToken(`users/${username}/unfollow`, { method: 'POST' })
+}

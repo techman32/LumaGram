@@ -45,7 +45,7 @@
   },
   "Profile": {
     "posts-count": "{postsCount} posts",
-    "follower-count": "{followerCount} followers",
+    "follower-count": "{followersCount} followers",
     "following-count": "{followingCount} following",
     "edit-button": "Edit profile"
   },

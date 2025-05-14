@@ -45,8 +45,8 @@
   },
   "Profile": {
     "posts-count": "{postsCount, plural, one {# пост} few {# поста} many {# постов} other {# поста}}",
-    "follower-count": "{followerCount, plural, one {# подписка} few {# подписка} many {# подписок} other {# подписка}}",
-    "following-count": "{followingCount, plural, one {# подписчик} few {# подписчика} many {# подписчиков} other {# подписчика}}",
+    "follower-count": "{followersCount, plural, one {# подписчик} few {# подписчика} many {# подписчиков} other {# подписчика}}",
+    "following-count": "{followingCount, plural, one {# подписка} few {# подписка} many {# подписок} other {# подписка}}",
     "edit-button": "Редактировать"
   },
   "Errors": {
