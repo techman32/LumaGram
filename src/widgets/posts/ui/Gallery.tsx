@@ -18,13 +18,7 @@ export default function Gallery({ posts }: { posts: PostDto[] }) {
       <div className="flex justify-center pb-4">
         <Button appearance="secondary">Загрузить еще</Button>
       </div>
-      {selectedPost && (
-        <PostModal
-          post={selectedPost}
-          likedByCurrentUser={selectedPost.isLiked}
-          onCloseAction={() => setSelectedPost(null)}
-        />
-      )}
+      {selectedPost && <PostModal post={selectedPost} onCloseAction={() => setSelectedPost(null)} />}
     </>
   )
 }

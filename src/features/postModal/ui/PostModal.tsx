@@ -4,22 +4,11 @@ import PostActions from '@/features/postActions/ui/PostActions'
 import Comments from '@/features/comments/ui/Comments'
 import { PostDto } from '@/shared/common/types/posts'
 import PostUserInfo from '@/features/post/ui/PostUserInfo'
-import Button from '@/shared/ui/Button'
-import { Trash2 } from 'lucide-react'
 import { deleteProfilePost } from '@/shared/api/posts/api'
 import Image from 'next/image'
-import Photo from '@/shared/ui/Photo'
 import CommentSender from '@/features/commentSender/ui/CommentSender'
 
-export default function PostModal({
-  post,
-  onCloseAction,
-  likedByCurrentUser,
-}: {
-  post: PostDto
-  likedByCurrentUser: boolean
-  onCloseAction: () => void
-}) {
+export default function PostModal({ post, onCloseAction }: { post: PostDto; onCloseAction: () => void }) {
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onCloseAction()

@@ -1,51 +1,48 @@
 'use client'
-import Textarea from '@/shared/ui/Textarea'
-import Button from '@/shared/ui/Button'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { commentDefaultValues, type CommentSchema, commentSchema } from '@/features/commentSender/ui/model/schema'
-import { createComment } from '@/shared/api/posts/api'
-import { getCurrentUsername } from '@/shared/api/auth/api'
-import Input from '@/shared/ui/Input'
+import { commentSchema, commentDefaultValues, CommentSchema } from './model/schema'
 import { useProfilePostsStore } from '@/shared/common/store/posts'
+import { useCommentsStore } from '@/shared/common/store/comments'
+import { createComment } from '@/shared/api/posts/api'
+import Input from '@/shared/ui/Input'
+import { getCurrentUsername } from '@/shared/api/auth/api'
 
-type CommentSenderProps = {
+type Props = {
   postId: string
 }
 
-export default function CommentSender({ postId }: CommentSenderProps) {
+export default function CommentSender({ postId }: Props) {
   const { updatePost, posts } = useProfilePostsStore()
+  const addComment = useCommentsStore((state) => state.addComment)
+
   const {
     register,
     formState: { errors },
     handleSubmit,
     setError,
     reset,
-  } = useForm({
+  } = useForm<CommentSchema>({
     mode: 'all',
     resolver: zodResolver(commentSchema),
     defaultValues: commentDefaultValues,
   })
 
   const onSubmit = async (data: CommentSchema) => {
-    const username = await getCurrentUsername().then((res) => {
-      if (res.data) {
-        return res.data.username
-      } else {
-        return ''
+    const username = await getCurrentUsername().then((res) => res.data?.username || '')
+    const res = await createComment(postId, { ...data, username })
+
+    if (res.success && res.data) {
+      addComment(postId, res.data)
+      const currentPost = posts.find((p) => p.id === postId)
+      if (currentPost) {
+        updatePost({ ...currentPost, commentCount: currentPost.commentCount + 1 })
       }
-    })
-    createComment(postId, { ...data, username: username }).then((res) => {
-      if (res.success) {
-        const currentPost = posts.find((p) => p.id === postId)
-        if (currentPost) {
-          updatePost({ ...currentPost, commentCount: currentPost.commentCount + 1 })
-        }
-        reset()
-      } else {
-        setError('text', { message: 'Не удалось отправить комментарий' })
-      }
-    })
+
+      reset()
+    } else {
+      setError('text', { message: 'Не удалось отправить комментарий' })
+    }
   }
 
   return (
