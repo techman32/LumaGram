@@ -61,12 +61,7 @@ export default function PostModal({
           <div className="flex-grow overflow-y-auto pr-1">
             <Comments postId={post.id} />
           </div>
-          <PostActions
-            postId={post.id}
-            initialLikeCount={post.likeCount}
-            initialCommentCount={post.commentCount}
-            initiallyLiked={likedByCurrentUser}
-          />
+          <PostActions postId={post.id} initialCommentCount={post.commentCount} />
           <CommentSender postId={post.id} />
         </div>
       </div>

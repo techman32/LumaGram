@@ -7,17 +7,20 @@ import { commentDefaultValues, type CommentSchema, commentSchema } from '@/featu
 import { createComment } from '@/shared/api/posts/api'
 import { getCurrentUsername } from '@/shared/api/auth/api'
 import Input from '@/shared/ui/Input'
+import { useProfilePostsStore } from '@/shared/common/store/posts'
 
 type CommentSenderProps = {
   postId: string
 }
 
 export default function CommentSender({ postId }: CommentSenderProps) {
+  const { updatePost, posts } = useProfilePostsStore()
   const {
     register,
     formState: { errors },
     handleSubmit,
     setError,
+    reset,
   } = useForm({
     mode: 'all',
     resolver: zodResolver(commentSchema),
@@ -33,7 +36,15 @@ export default function CommentSender({ postId }: CommentSenderProps) {
       }
     })
     createComment(postId, { ...data, username: username }).then((res) => {
-      console.log(res)
+      if (res.success) {
+        const currentPost = posts.find((p) => p.id === postId)
+        if (currentPost) {
+          updatePost({ ...currentPost, commentCount: currentPost.commentCount + 1 })
+        }
+        reset()
+      } else {
+        setError('text', { message: 'Не удалось отправить комментарий' })
+      }
     })
   }
 

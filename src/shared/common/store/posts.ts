@@ -7,6 +7,7 @@ interface ProfilePostsState {
   addPost: (post: PostDto) => void
   removePost: (id: string) => void
   updatePost: (updated: PostDto) => void
+  toggleLike: (id: string, isLiked: boolean) => void
 }
 
 export const useProfilePostsStore = create<ProfilePostsState>((set) => ({
@@ -20,5 +21,17 @@ export const useProfilePostsStore = create<ProfilePostsState>((set) => ({
   updatePost: (updated) =>
     set((state) => ({
       posts: state.posts.map((p) => (p.id === updated.id ? updated : p)),
+    })),
+  toggleLike: (id, isLiked) =>
+    set((state) => ({
+      posts: state.posts.map((p) =>
+        p.id === id
+          ? {
+              ...p,
+              isLiked,
+              likeCount: isLiked ? p.likeCount + 1 : p.likeCount - 1,
+            }
+          : p,
+      ),
     })),
 }))

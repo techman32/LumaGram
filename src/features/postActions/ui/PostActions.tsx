@@ -1,54 +1,41 @@
 'use client'
-import { useState } from 'react'
 import Button from '@/shared/ui/Button'
 import { Heart, MessageCircle } from 'lucide-react'
 import { toggleLikePost } from '@/shared/api/posts/api'
+import { useProfilePostsStore } from '@/shared/common/store/posts'
 
 interface PostActionsProps {
   postId: string
-  initialLikeCount: number
   initialCommentCount: number
-  initiallyLiked: boolean
 }
 
-export default function PostActions({
-  postId,
-  initialLikeCount,
-  initialCommentCount,
-  initiallyLiked,
-}: PostActionsProps) {
-  const [liked, setLiked] = useState(initiallyLiked)
-  const [likeCount, setLikeCount] = useState(initialLikeCount)
+export default function PostActions({ postId, initialCommentCount }: PostActionsProps) {
+  const post = useProfilePostsStore((state) => state.posts.find((p) => p.id === postId))
+  const toggleLikeState = useProfilePostsStore((state) => state.toggleLike)
 
   const toggleLike = async () => {
-    if (liked) {
-      const res = await toggleLikePost(postId)
-      if (res.success) {
-        setLiked(false)
-        setLikeCount((prev) => prev - 1)
-      }
-    } else {
-      const res = await toggleLikePost(postId)
-      if (res.success) {
-        setLiked(true)
-        setLikeCount((prev) => prev + 1)
-      }
+    if (!post) return
+    const res = await toggleLikePost(postId)
+    if (res.success) {
+      toggleLikeState(postId, !post.isLiked)
     }
   }
+
+  if (!post) return null
 
   return (
     <div className="flex gap-4 items-center border-t border-gray-200 dark:border-white/20 px-2 py-1">
       <div className="flex gap-2 items-center">
         <Button appearance="scalable" onClick={toggleLike}>
-          {liked ? <Heart className="text-red-500 fill-red-500" size={20} /> : <Heart size={20} />}
+          {post.isLiked ? <Heart className="text-red-500 fill-red-500" size={20} /> : <Heart size={20} />}
         </Button>
-        <span>{likeCount}</span>
+        <span>{post.likeCount}</span>
       </div>
       <div className="flex gap-2 items-center">
         <Button appearance="scalable">
           <MessageCircle size={20} />
         </Button>
-        <span>{initialCommentCount}</span>
+        <span>{post?.commentCount ?? initialCommentCount}</span>
       </div>
     </div>
   )
