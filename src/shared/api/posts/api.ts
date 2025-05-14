@@ -1,7 +1,7 @@
 'use server'
 import { sendRequestWithToken } from '@/shared/api/api'
-import { CreatedPostDto } from '@/shared/common/types/posts'
-import { CommentDto, CommentsDto, CreatedCommentDto } from '@/shared/common/types/comment'
+import { CreatedPostDto, PostDto } from '@/shared/common/types/posts'
+import { CommentsDto, CreatedCommentDto } from '@/shared/common/types/comment'
 
 export const getProfilePosts = async (username: string, limit: number = 12, offset: number = 0) => {
   return await sendRequestWithToken(`users/${username}/posts`, { method: 'GET', params: { limit, offset } })
@@ -27,7 +27,7 @@ export const createPost = async (data: CreatedPostDto) => {
   serverFormData.append('image', new File([buffer], data.image.name, { type: data.image.type }))
   serverFormData.append('description', data.description)
 
-  return await sendRequestWithToken<CreatedPostDto>('posts', {
+  return await sendRequestWithToken<PostDto, FormData>('posts', {
     method: 'POST',
     body: serverFormData,
   })

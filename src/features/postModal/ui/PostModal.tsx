@@ -7,6 +7,9 @@ import PostUserInfo from '@/features/post/ui/PostUserInfo'
 import Button from '@/shared/ui/Button'
 import { Trash2 } from 'lucide-react'
 import { deleteProfilePost } from '@/shared/api/posts/api'
+import Image from 'next/image'
+import Photo from '@/shared/ui/Photo'
+import CommentSender from '@/features/commentSender/ui/CommentSender'
 
 export default function PostModal({
   post,
@@ -36,31 +39,35 @@ export default function PostModal({
 
   return (
     <div
-      className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex justify-center items-center gap-2"
+      className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 flex justify-center items-center gap-2"
       onClick={onCloseAction}
     >
       <div
-        className="bg-white dark:bg-black dark:border dark:border-white/20 p-6 rounded-lg shadow-md w-full max-w-[64rem] flex gap-4"
+        className="relative z-50 max-w-5xl w-full mx-4 md:mx-auto bg-white dark:bg-black rounded-md overflow-hidden flex flex-col md:flex-row"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex flex-col gap-4 w-full max-w-[32rem]">
-          <img src={`http://localhost:8000/${post.image.url}`} alt={post.description} className="rounded-md" />
+        <div className="md:w-[640px] w-full aspect-square bg-black">
+          <Image
+            src={`http://localhost:8000/${post.image.url}`}
+            alt={post.description}
+            width={post.image.width}
+            height={post.image.height}
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        <div className="w-full md:max-w-md flex flex-col aspect-square justify-between overflow-y-auto">
+          <PostUserInfo username={post.user.username} image={post.user.image} />
+          <div className="flex-grow overflow-y-auto pr-1">
+            <Comments postId={post.id} />
+          </div>
           <PostActions
             postId={post.id}
             initialLikeCount={post.likeCount}
             initialCommentCount={post.commentCount}
             initiallyLiked={likedByCurrentUser}
           />
-          {post.description && <p className="text-sm text-gray-600 dark:text-white/80">{post.description}</p>}
-        </div>
-        <div className="w-full flex flex-col gap-4">
-          <div className="flex justify-between items-center">
-            <PostUserInfo username={post.user.username} image={post.user.image} />
-            <Button onClick={deletePost}>
-              <Trash2 size={20} className="text-red-500" />
-            </Button>
-          </div>
-          <Comments postId={post.id} />
+          <CommentSender postId={post.id} />
         </div>
       </div>
     </div>

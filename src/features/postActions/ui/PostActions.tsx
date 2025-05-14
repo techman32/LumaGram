@@ -37,7 +37,7 @@ export default function PostActions({
   }
 
   return (
-    <div className="flex gap-4 items-center">
+    <div className="flex gap-4 items-center border-t border-gray-200 dark:border-white/20 px-2 py-1">
       <div className="flex gap-2 items-center">
         <Button appearance="scalable" onClick={toggleLike}>
           {liked ? <Heart className="text-red-500 fill-red-500" size={20} /> : <Heart size={20} />}

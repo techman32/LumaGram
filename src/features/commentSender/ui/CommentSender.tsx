@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { commentDefaultValues, type CommentSchema, commentSchema } from '@/features/commentSender/ui/model/schema'
 import { createComment } from '@/shared/api/posts/api'
 import { getCurrentUsername } from '@/shared/api/auth/api'
+import Input from '@/shared/ui/Input'
 
 type CommentSenderProps = {
   postId: string
@@ -37,10 +38,13 @@ export default function CommentSender({ postId }: CommentSenderProps) {
   }
 
   return (
-    <form className="w-full flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
-      <Textarea placeholder="Оставьте свой комментарий..." {...register('text')} />
-      <div className="w-full flex justify-end">
-        <Button appearance="primary">Отправить</Button>
+    <form
+      className="w-full flex gap-1 items-center border-t border-gray-200 dark:border-white/20 px-2 py-1"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <div className="flex-1 flex gap-1 flex-col">
+        <p className="opacity-40 text-sm">Чтобы отправить комментарий нажмите Enter</p>
+        <Input block placeholder="Оставьте свой комментарий..." {...register('text')} />
       </div>
     </form>
   )

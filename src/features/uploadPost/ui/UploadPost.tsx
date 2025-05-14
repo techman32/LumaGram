@@ -6,6 +6,7 @@ import { useForm, Controller } from 'react-hook-form'
 import { useState } from 'react'
 import Textarea from '@/shared/ui/Textarea'
 import { createPost } from '@/shared/api/posts/api'
+import { useProfilePostsStore } from '@/shared/common/store/posts'
 
 type PostFormValues = {
   description: string
@@ -13,6 +14,7 @@ type PostFormValues = {
 
 export default function UploadPost() {
   const [modalOpen, setModalOpen] = useState(false)
+  const { addPost } = useProfilePostsStore()
 
   const { control, getValues, reset } = useForm<PostFormValues>({
     defaultValues: { description: '' },
@@ -23,7 +25,7 @@ export default function UploadPost() {
 
     const response = await createPost({ image: file, description: values.description })
     if (response.success) {
-      console.log('Пост создан')
+      addPost(response.data)
       reset()
       setModalOpen(false)
     } else {

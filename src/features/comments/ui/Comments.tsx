@@ -22,10 +22,9 @@ export default function Comments({ postId }: CommentsProps) {
   }, [])
 
   return (
-    <div className="flex flex-col gap-4">
-      <CommentSender postId={postId} />
+    <div className="flex flex-col gap-4 p-2">
       {comments.comments.length > 0 && (
-        <div className="flex flex-col gap-4 overflow-y-auto max-h-64 pr-1">
+        <div className="flex flex-col gap-4 overflow-y-auto pr-1">
           {comments.comments.map((comment) => (
             <div key={comment.id} className="flex gap-2">
               <div className="flex-shrink-0">
